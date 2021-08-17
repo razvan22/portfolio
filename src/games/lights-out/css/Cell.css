@@ -1,0 +1,16 @@
+.Cell{
+    background-color: #263238;
+    transition: background-color 0.7s ease;
+    height: 4.5em;
+    width: 4.5em;
+    border-radius: 2%;
+}
+
+.Cell:hover {
+    cursor: pointer;
+  
+}
+
+.Cell-light {
+    background: rgb(1, 199, 199);
+}

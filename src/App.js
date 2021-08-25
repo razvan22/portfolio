@@ -1,10 +1,9 @@
 import './App.css';
-import LightsOut from './games/lights-out/LightsOut';
-
+import Game from './games/yahtzee/Game';
 function App() {
   return (
     <div className="App">
-     <LightsOut />
+      <Game />
     </div>
   );
 }

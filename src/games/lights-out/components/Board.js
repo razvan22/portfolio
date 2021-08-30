@@ -11,7 +11,6 @@ class Board extends Component {
 
     constructor (props) {
         super(props);
-        const {boardSize} = this.props;
         this.createBoard = this.createBoard.bind(this);
         this.state = {
             hasWon: false,

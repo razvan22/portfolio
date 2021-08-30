@@ -1,11 +1,13 @@
 import './App.css';
-import Game from './games/yahtzee/Game';
+import Palette from "./web-apps/color-palettes/components/Palette";
+import seedColors from "./web-apps/color-palettes/seedColors";
+
 function App() {
-  return (
-    <div className="App">
-      <Game />
-    </div>
-  );
+	return (
+		<div>
+			<Palette {...seedColors[4]} />
+		</div>
+	);
 }
 
 export default App;

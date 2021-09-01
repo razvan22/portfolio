@@ -3,6 +3,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { Select } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -27,25 +28,27 @@ export default class Navbar extends Component {
 	}
 
 	render() {
-		const { level, changeLevel } = this.props;
+		const { level, changeLevel, hasSlider} = this.props;
 		const { format } = this.state;
 		return (
 			<nav className="Navbar">
 				<div className="logo">
-					<a href="#">Color Palette</a>
+					<Link to="/">Color Palette</Link>
 				</div>
-				<div className="slider-container">
-					<span>Level: {level}</span>
-					<div className="slider">
-						<Slider
-							defaultValue={level}
-							min={100}
-							max={900}
-							step={100}
-							onAfterChange={changeLevel}
-						/>
+				{hasSlider && (
+					<div className="slider-container">
+						<span>Level: {level}</span>
+						<div className="slider">
+							<Slider
+								defaultValue={level}
+								min={100}
+								max={900}
+								step={100}
+								onAfterChange={changeLevel}
+							/>
+						</div>
 					</div>
-				</div>
+				)}
 				<div className="select-container">
 					<Select value={format} onChange={this.handleFormatChange}>
 						<MenuItem value="hex">HEX - #ffff </MenuItem>
@@ -61,7 +64,7 @@ export default class Navbar extends Component {
 					ContentProp={{
 						"aria-describedby": "message-id",
 					}}
-          onClose={this.closeSnackbar}
+					onClose={this.closeSnackbar}
 					action={
 						<IconButton
 							onClick={this.closeSnackbar}

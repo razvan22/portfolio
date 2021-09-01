@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Link } from "react-router-dom";
 
 import "../style/ColorBox.css";
 
 class ColorBox extends Component {
 	constructor(props) {
-    super(props)
-		
+		super(props);
+
 		this.changeCopyState = this.changeCopyState.bind(this);
-    this.state = {
-       copied: false
-    }
-  }
-	
+		this.state = {
+			copied: false,
+		};
+	}
+
 	changeCopyState() {
-		this.setState({copied: true},
-			() => {
-				setTimeout(() => this.setState({copied: false}), 1500);
+		this.setState({ copied: true }, () => {
+			setTimeout(() => this.setState({ copied: false }), 1500);
 		});
 	}
 
 	render() {
-		const { name, background } = this.props;
-		const {copied} = this.state;
+		const { name, background, paletteId, id } = this.props;
+		const { copied } = this.state;
 
 		return (
 			<CopyToClipboard text={background} onCopy={this.changeCopyState}>
@@ -41,7 +41,14 @@ class ColorBox extends Component {
 						</div>
 						<button className="copy-button">Copy</button>
 					</div>
-					<span className="see-more">More</span>
+					{this.props.hasLink && (
+						<Link
+							to={`/palette/${paletteId}/${id}`}
+							onClick={(e) => e.stopPropagation()}
+						>
+							<span className="see-more">More</span>
+						</Link>
+					)}
 				</div>
 			</CopyToClipboard>
 		);

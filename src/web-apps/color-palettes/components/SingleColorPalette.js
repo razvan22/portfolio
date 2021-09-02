@@ -1,7 +1,7 @@
-import { color, palette } from "@material-ui/system";
 import React, { Component } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
+import {Link} from "react-router-dom";
 import PaletteFooter from "./PaletteFooter";
 
 class SingleColorPalette extends Component {
@@ -33,7 +33,7 @@ class SingleColorPalette extends Component {
 
 	render() {
     const {format} = this.state;
-    const { paletteName, emoji} = this.props.palette;
+    const { paletteName, emoji, id} = this.props.palette;
 		const colorBoxes = this.colorShades.map((color) => (
 			<ColorBox
 				key={color.hex}
@@ -43,10 +43,15 @@ class SingleColorPalette extends Component {
 			/>
 		));
 		return (
-			<div className="Palette">
+			<div className="SingleColorPalette Palette">
 				<Navbar hasSlider={false} handleChange={this.changeColorFormat} />
-				<div className="Palette-colors">{colorBoxes}</div>
-        <PaletteFooter paletteName={paletteName} emoji={emoji} />
+				<div className="Palette-colors">
+					{colorBoxes}
+					<div className="go-back ColorBox">
+						<Link to={`/palette/${id}`} id="back-button">Go Back</Link>
+					</div>
+				</div>
+				<PaletteFooter paletteName={paletteName} emoji={emoji} />
 			</div>
 		);
 	}

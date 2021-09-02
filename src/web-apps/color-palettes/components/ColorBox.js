@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import chroma from "chroma-js";
 import { Link } from "react-router-dom";
+import {withStyles} from "@material-ui/styles";
 
 import "../style/ColorBox.css";
+
+const styles = {
+	copyText: {
+		color: (props) => chroma(props.background).luminance() >= 0.6 ? "dark-text" : "light-text",
+	},
+};
+
 
 class ColorBox extends Component {
 	constructor(props) {
@@ -21,8 +30,11 @@ class ColorBox extends Component {
 	}
 
 	render() {
-		const { name, background, paletteId, id } = this.props;
+		const { name, background, paletteId, id, classes } = this.props;
 		const { copied } = this.state;
+		
+		const isDarkColor = chroma(background).luminance() <= 0.8;
+		const isLightColor = chroma(background).luminance() >= 0.6;
 
 		return (
 			<CopyToClipboard text={background} onCopy={this.changeCopyState}>
@@ -33,20 +45,30 @@ class ColorBox extends Component {
 					/>
 					<div className={`copy-msg ${copied && "show"}`}>
 						<h1>copied</h1>
-						<p>{this.props.background}</p>
+						<p className={classes.copyText}>
+							{this.props.background}
+						</p>
 					</div>
 					<div className="copy-container">
 						<div className="box-content">
-							<span className="color-name">{name}</span>
+							<span
+								className={isDarkColor ? "color-name light-text" : "color-name"}
+							>
+								{name}
+							</span>
 						</div>
-						<button className="copy-button">Copy</button>
+						<button className={`copy-button ${isLightColor && "dark-text"}`}>
+							Copy
+						</button>
 					</div>
 					{this.props.hasLink && (
 						<Link
 							to={`/palette/${paletteId}/${id}`}
 							onClick={(e) => e.stopPropagation()}
 						>
-							<span className="see-more">More</span>
+							<span className={`see-more ${isLightColor && "dark-text"}`}>
+								MORE
+							</span>
 						</Link>
 					)}
 				</div>
@@ -54,4 +76,4 @@ class ColorBox extends Component {
 		);
 	}
 }
-export default ColorBox;
+export default withStyles(styles)(ColorBox);

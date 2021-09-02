@@ -28,7 +28,7 @@ export default class Navbar extends Component {
 	}
 
 	render() {
-		const { level, changeLevel, hasSlider} = this.props;
+		const { level, changeLevel, hasSlider, paletteName} = this.props;
 		const { format } = this.state;
 		return (
 			<nav className="Navbar">

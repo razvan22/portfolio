@@ -5,11 +5,11 @@ import { generatePalette } from "./web-apps/color-palettes/resources/colorHelper
 import PaletteList from "./web-apps/color-palettes/components/PaletteList";
 import SingleColorPalette from "./web-apps/color-palettes/components/SingleColorPalette";
 import NewPaletteForm from "./web-apps/color-palettes/components/NewPaletteForm";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
-	const [palettes, setPalettes] = useState(seedColors);
-
+	const savedPallets = JSON.parse(window.localStorage.getItem("palettes"));
+	const [palettes, setPalettes] = useState(savedPallets || seedColors);
 	function findPalette(id) {
 		return palettes.find((palette) => {
 			return palette.id === id;
@@ -18,7 +18,20 @@ function App() {
 
 	function savePalette(newPalette) {
 		setPalettes([...palettes, newPalette]);
+		syncLocalStorage();
 	}
+
+	function deletePalette(id){
+		setPalettes(palettes.filter(palette => palette.id !== id))
+	}
+
+	function syncLocalStorage() {
+		window.localStorage.setItem("palettes", JSON.stringify(palettes));
+	}
+
+	useEffect(() => {
+		syncLocalStorage();
+	}, [palettes]);
 
 	return (
 		<Switch>
@@ -26,14 +39,22 @@ function App() {
 				exact
 				path="/palette/new"
 				render={(routeProps) => (
-					<NewPaletteForm savePalette={savePalette} palettes={palettes} {...routeProps} />
+					<NewPaletteForm
+						savePalette={savePalette}
+						palettes={palettes}
+						{...routeProps}
+					/>
 				)}
 			/>
 			<Route
 				exact
 				path="/"
 				render={(routerProps) => (
-					<PaletteList palettes={palettes} {...routerProps} />
+					<PaletteList
+						deletePalette={deletePalette}
+						palettes={palettes}
+						{...routerProps}
+					/>
 				)}
 			/>
 			<Route

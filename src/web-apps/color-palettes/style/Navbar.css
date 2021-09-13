@@ -2,7 +2,7 @@
 
 
 
-.Navbar{
+/* .Navbar{
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -23,9 +23,9 @@
 .logo a {
   text-decoration: none;
   color: black; 
-}
+} */
 
-.slider {
+/* .slider {
   width: 340px;
   margin: 0 10px;
   display: inline-block;
@@ -50,9 +50,9 @@
   width: 13px;
   height: 13px;
   margin-top:-3px;
-}
+} */
 
-.select-container {
+/* .select-container {
   margin-left: auto;
   margin-right: 1rem;
-}
+} */

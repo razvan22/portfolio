@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import ScreenSizes from "./ScreenSizes";
 
 export default {
 	copyText: {
@@ -17,6 +18,18 @@ export default {
 			opacity: 1,
 			transition: "0.5s",
 			cursor: "pointer",
+		},
+		[ScreenSizes.down("lg")]: {
+			width: "25%",
+			height: (props) => (props.showingFullPalette ? "20%" : "33.3333%"),
+		},
+		[ScreenSizes.down("md")]: {
+			width: "50%",
+			height: (props) => (props.showingFullPalette ? "10%" : "20%"),
+		},
+		[ScreenSizes.down("xs")]: {
+			width: "100%",
+			height: (props) => (props.showingFullPalette ? "8%" : "10%"),
 		},
 	},
 	seeMore: {
@@ -116,6 +129,10 @@ export default {
 			marginTop: "0",
 			padding: "1rem",
 			textTransform: "uppercase",
+			[ScreenSizes.down('xs')]:{
+				fontSize: "4rem",
+				padding: "0.5rem"
+			}
 		},
 		"& p": {
 			fontSize: "2rem",

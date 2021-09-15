@@ -1,3 +1,7 @@
+import ScreenSizes from "./ScreenSizes";
+import chroma from "chroma-js";
+
+
 const styles = {
 	root: {
 		width: "20%",
@@ -11,13 +15,28 @@ const styles = {
 			color: "white",
 			transform: "scale(1.3)",
 		},
+		[ScreenSizes.down("lg")]: {
+			width: "25%",
+			height: "20%",
+		},
+		[ScreenSizes.down("lg")]: {
+			width: "50%",
+			height: "10%",
+		},
+		[ScreenSizes.down("sm")]: {
+			width: "100%",
+			height: "5%",
+		},
 	},
 	boxContent: {
 		position: "absolute",
 		width: "100%",
 		left: "0px",
 		bottom: "0px",
-		color: "rgb(0, 0, 0, 0.5)",
+		color: (props) =>
+			chroma(props.color).luminance() <= 0.4
+				? "rgba(255,255,255, 0.6)"
+				: "rgba(0,0,0, 0.6)",
 		padding: "10px",
 		letterSpacing: "1px",
 		textTransform: "uppercase",

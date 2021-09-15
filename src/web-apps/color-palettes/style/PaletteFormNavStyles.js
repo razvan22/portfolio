@@ -1,3 +1,4 @@
+import ScreenSizes from "./ScreenSizes";
 const drawerWidth = 400;
 
 const styles = (theme) => ({
@@ -29,11 +30,18 @@ const styles = (theme) => ({
 	},
 	navButtons: {
 		marginRight: "1rem",
+		[ScreenSizes.down("xs")]: {
+			marginRight: 0,
+		},
 	},
 	button: {
 		margin: "0 0.5rem",
 		"& a": {
 			textDecoration: "none",
+		},
+		[ScreenSizes.down("xs")]: {
+			margin: "0.2rem",
+			padding:"0.2rem"
 		},
 	},
 });

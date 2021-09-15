@@ -39,7 +39,7 @@ class Navbar extends Component {
 				</div>
 				{hasSlider && (
 					<div>
-						<span>Level: {level}</span>
+						<span className={classes.level}>Level: {level}</span>
 						<div className={classes.Slider}>
 							<Slider
 								defaultValue={level}

@@ -1,3 +1,5 @@
+import ScreenSizes from "./ScreenSizes";
+
 export default {
 	Navbar: {
 		display: "flex",
@@ -19,10 +21,13 @@ export default {
 			textDecoration: "none",
 			color: "black",
 		},
+		[ScreenSizes.down("xs")]: {
+			display: "none",
+		},
 	},
 
 	Slider: {
-		width: "340px",
+		width: "15vw",
 		margin: "0 10px",
 		display: "inline-block",
 		"& .rc-slider-rail": {
@@ -43,8 +48,13 @@ export default {
 				height: "13px",
 				marginTop: "-3px",
 			},
+		[ScreenSizes.down("xs")]: {
+			width: "25vw",
+		},
 	},
-
+	level:{
+		paddingLeft:"0.5rem"
+	},
 	selectContainer: {
 		marginLeft: "auto",
 		marginRight: "1rem",

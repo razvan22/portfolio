@@ -25,6 +25,7 @@ function PaletteMetaForm(props) {
 	function handleChange(evt) {
 		setNewPaletteName(evt.target.value);
 	}
+
 	const saveNewPalette = (emoji) => {
 		const palette = {
 			paletteName: newPaletteName,
@@ -32,6 +33,7 @@ function PaletteMetaForm(props) {
 		};
 
 		savePalette(palette);
+		setStage("")
 	};
 
 	return (

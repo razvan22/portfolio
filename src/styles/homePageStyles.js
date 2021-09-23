@@ -1,12 +1,9 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import bg from "../assets/bg.jpg";
-import { padding } from "@mui/system";
+import bg from "../assets/images/bg.jpg";
 
-
-
-const homePageStyles = makeStyles({
+const homePageStyles = makeStyles((theme) => ({
 	main: {
 		backgroundImage: `url(${bg})`,
 		backgroundRepeat: "no-repeat",
@@ -14,20 +11,20 @@ const homePageStyles = makeStyles({
 		backgroundSize: "cover",
 		color: "white",
 	},
-});
+}));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
 	[theme.breakpoints.down("sm")]: {
-		textAlign:"center",
+		textAlign: "center",
 		fontSize: "1.5rem",
-		fontWeight:"bold",
-		paddingTop: "1rem"
+		fontWeight: "bold",
+		paddingTop: "1rem",
 	},
 	[theme.breakpoints.up("md")]: {
 		fontSize: "1.7rem",
 	},
 	[theme.breakpoints.up("lg")]: {
-		fontSize: "2.3rem",
+		fontSize: "2.5rem",
 	},
 }));
 

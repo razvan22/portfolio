@@ -16,7 +16,7 @@ function Navbar() {
 				<Toolbar className={classes.root}>
 					<NavButton startIcon={<DescriptionOutlinedIcon />}>Resume</NavButton>
 					<NavButton startIcon={<FolderOpenOutlinedIcon />}>
-						Portfolio
+						Projects
 					</NavButton>
 					<NavButton startIcon={<AlternateEmailOutlinedIcon />}>
 						Contact

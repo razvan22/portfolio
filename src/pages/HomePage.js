@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Typical from "react-typical";
 
+
 import Navbar from "../components/navbar/Navbar";
 import ProjectsList from "../components/ProjectsList";
 import { homePageStyles, StyledTypography } from "../styles/homePageStyles";
@@ -34,7 +35,7 @@ function HomePage() {
 					<StyledTypography variant="h4">
 						Hi there! My name is Razvan-Petru
 					</StyledTypography>
-					<Typography variant="h6" gutterBottom component="h6">
+					<Typography variant="h6"  component="h6">
 						<Typical
 							loop={2}
 							steps={[

@@ -16,7 +16,7 @@ const homePageStyles = makeStyles((theme) => ({
 const StyledTypography = styled(Typography)(({ theme }) => ({
 	[theme.breakpoints.down("sm")]: {
 		textAlign: "center",
-		fontSize: "1.5rem",
+		fontSize: "2rem",
 		fontWeight: "bold",
 		paddingTop: "1rem",
 	},

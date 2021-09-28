@@ -10,15 +10,27 @@ import MobileViewFilterButtons from "./MobileViewFilterButtons";
 
 function ProjectsFilter() {
 	const { projectsMetadata } = useContext(ProjectsMetadataContext);
+	const handleClick = () => {};
 
-	const handleClick = () => {
-		console.log(projectsMetadata);
+	const removeDuplicateTypeValue = () => {
+		const filteredProjects = [];
+		filteredProjects.push(projectsMetadata[0]);
+
+		projectsMetadata.forEach((data) => {
+			const duplicateType = filteredProjects.every((project) => {
+				return project.type === data.type;
+			});
+			if (!duplicateType) filteredProjects.push(data);
+		});
+		return filteredProjects;
 	};
 
-	const filterButtons = projectsMetadata.map((data) => (
+	const buttonsObjects = removeDuplicateTypeValue();
+
+	const filterButtons = removeDuplicateTypeValue().map((data) => (
 		<Chip
 			px={3}
-			avatar={<Avatar alt="Natacha" src={data.icon} />}
+			avatar={<Avatar alt={data.icon} src={data.icon} />}
 			label={data.type}
 			variant="outlined"
 			onClick={handleClick}
@@ -26,21 +38,21 @@ function ProjectsFilter() {
 		/>
 	));
 
-
-
 	return (
 		<FilterBar direction="row" spacing={1}>
 			<Typography
 				sx={{
 					display: { xs: "none", sm: "block" },
+					ml: { sm: "1%", md: "24.5%" },
+					fontWeight: 700
 				}}
 				gutterBottom
-				variant="h5"
-				component="div"
+				variant="h4"
+				component="h5"
 				m={0}
 				pl={1}
 			>
-				{`Projects />`}
+				{`Projects`}
 			</Typography>
 			<FilterButtons
 				sx={{ display: { xs: "none", sm: "block" } }}
@@ -49,7 +61,7 @@ function ProjectsFilter() {
 			>
 				{filterButtons}
 			</FilterButtons>
-			<MobileViewFilterButtons projectsMetadata={projectsMetadata} />
+			<MobileViewFilterButtons projectsMetadata={buttonsObjects} />
 		</FilterBar>
 	);
 }

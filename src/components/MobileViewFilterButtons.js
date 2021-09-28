@@ -6,7 +6,6 @@ import Avatar from "@mui/material/Avatar";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import Chip from "@mui/material/Chip";
-import { yellow } from "@mui/material/colors";
 
 
 import { FilterButtons } from "../styles/filterBarStyles";
@@ -18,7 +17,6 @@ function MobileViewFilterButtons(props) {
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
-    console.log(yellow[500]);
 	};
 
 	const handleClose = () => {

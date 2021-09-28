@@ -10,11 +10,20 @@ const projectsMetadata = [
 		type: "React",
 		shortDescription: "Require description ....",
 		description: "",
+		path: "/color-palettes",
+		fullDescriptionPath: "/",
+	},
+	{
+		name: "Lights Out ",
+		icon: reactIcon,
+		type: "React",
+		shortDescription: "Require description ....",
+		description: "",
 		path: "/colorPicker",
 		fullDescriptionPath: "/",
 	},
 	{
-		name: "...",
+		name: "Nordana Gard",
 		icon: vueIcon,
 		type: "Vue.js",
 		shortDescription: "Require description ....",
@@ -23,7 +32,7 @@ const projectsMetadata = [
 		fullDescriptionPath: "/",
 	},
 	{
-		name: "...",
+		name: "Munchies Burgers",
 		icon: expressIcon,
 		type: "Express",
 		shortDescription: "Require description ....",
@@ -32,7 +41,7 @@ const projectsMetadata = [
 		fullDescriptionPath: "/",
 	},
 	{
-		name: "...",
+		name: "Global Travel",
 		icon: springIcon,
 		type: "Spring & React",
 		shortDescription: "Require description ....",
@@ -41,4 +50,6 @@ const projectsMetadata = [
 		fullDescriptionPath: "/",
 	},
 ];
+
+
 export default projectsMetadata;

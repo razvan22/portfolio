@@ -1,33 +1,40 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
-import img from "../assets/images/reactColors.png";
 import { projectItemStyles } from "../styles/projectItemsStyles";
+import img from "../assets/images/reactColors.png";
 
-function ProjectItem() {
+function ProjectItem(props) {
 	const classes = projectItemStyles();
+	const { project } = props;
 
 	return (
-		<Card sx={{ display: "flex" }} className={classes.card}>
-			<CardContent sx={{ width: "50%" }}>
-				<Typography gutterBottom variant="h5" component="div">
-				Project Name
-				</Typography>
-				<Typography variant="body2" color="text.secondary">
-					Lizards are a widespread group of squamate reptiles, with over 6,000
-					species, ranging across all continents except Antarctica
-				</Typography>
-			</CardContent>
-			<CardMedia
-        className={classes.cardImg}
-				component="img"
-				image={img}
-				alt="Live from space album cover"
-			/>
-		</Card>
+		<Grid item xs={12} md={6} m={2}>
+			<Box className={classes.box}>
+				<img src={img} alt={project.name} className={classes.img} />
+				<div className={classes.imgCover}></div>
+				<Avatar
+					sx={{
+						width: 41,
+						height: 40,
+						margin: 2,
+						display: "inline-block",
+						position: "absolute",
+					}}
+					src={project.icon}
+				/>
+				<h4 className={classes.projectName}>{project.name}</h4>
+				<h6 className={classes.projectDescription}>
+					{project.shortDescription}
+				</h6>
+				<Link to={project.path}>
+					<p className={classes.link}>Live Demo</p>
+				</Link>
+			</Box>
+		</Grid>
 	);
 }
 

@@ -1,11 +1,14 @@
 import { Route, Switch } from "react-router-dom";
 import Palette from "./components/Palette";
 import seedColors from "./seedColors";
+
 import { generatePalette } from "./resources/colorHelpers";
 import PaletteList from "./components/PaletteList";
 import SingleColorPalette from "./components/SingleColorPalette";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 import NewPaletteForm from "./components/NewPaletteForm";
+
 import Page from "./components/hooks/Page";
 import React, { useState, useEffect } from "react";
 

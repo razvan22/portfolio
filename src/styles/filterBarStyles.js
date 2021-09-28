@@ -1,5 +1,4 @@
-import { styled, makeStyles } from "@material-ui/core/styles";
-import { Paper } from "@material-ui/core";
+import { styled } from "@material-ui/core/styles";
 import Stack from "@mui/material/Stack";
 
 const FilterBar = styled(Stack)(({ theme }) => ({
@@ -8,10 +7,7 @@ const FilterBar = styled(Stack)(({ theme }) => ({
 }));
 
 const FilterButtons = styled(Stack)(({ theme }) => ({
-
 }));
-
-
 
 
 export { FilterBar as default, FilterButtons };

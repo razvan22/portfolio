@@ -7,6 +7,9 @@ const projectItemStyles = makeStyles((theme) => ({
 		position: "relative",
 		width: "100%",
 		height: "50vh",
+		"&:hover h6": {
+			opacity: 1,
+		},
 	},
 	img: {
 		width: "100%",
@@ -24,12 +27,13 @@ const projectItemStyles = makeStyles((theme) => ({
 		transition: "opacity 0.6s ease",
 		"&:hover": {
 			opacity: 0.7,
+			cursor: "pointer",
 		},
 	},
 	projectName: {
 		color: "white",
 		position: "absolute",
-		bottom: "30%",
+		bottom: "10%",
 		left: "2rem",
 		textTransform: "uppercase",
 		fontSize: "29px",
@@ -39,10 +43,12 @@ const projectItemStyles = makeStyles((theme) => ({
 	projectDescription: {
 		color: "white",
 		position: "absolute",
-		bottom: "20%",
+		bottom: "0%",
 		left: "2rem",
 		fontWeight: 200,
 		fontSize: "19px",
+		opacity: 0,
+		transition: "opacity 0.8s ease-in-out",
 	},
 	link: {
 		position: "absolute",

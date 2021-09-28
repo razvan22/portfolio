@@ -59,7 +59,7 @@ function ColorPalettes() {
 							/>
 							<Route
 								exact
-								path="/"
+								path="/color-palettes"
 								render={(routerProps) => (
 									<Page>
 										<PaletteList

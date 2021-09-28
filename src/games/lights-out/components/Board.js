@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router-dom";
 import Cell from './Cell';
 import '../css/Board.css';
 
@@ -69,15 +70,22 @@ class Board extends Component {
         }
 
         return (
-            <section>
-                <h1 className="title"><span className="neon-orange">Lights</span> <span className="neon-blue">Out</span></h1>
-                <table className="Board">
-                    <tbody>{board}</tbody>
-                </table>
-            </section>
-            
-        )
+					<section>
+						<div className="menu-bar">
+								<h1 className="menu-item" onClick={()=> this.props.history.push("/")}>Home</h1>
+							<h1 className="menu-item">Difficulty</h1>
+							<h1 className="menu-item">New Game</h1>
+						</div>
+						<h1 className="title">
+							<span className="neon-orange">Lights</span>
+							<span className="neon-blue">Out</span>
+						</h1>
+						<table className="Board">
+							<tbody>{board}</tbody>
+						</table>
+					</section>
+				);
     }
 }
 
-export default Board;
+export default withRouter(Board);

@@ -2,6 +2,29 @@
   font-family: neon;
   src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
 }
+.title {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.menu-bar{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.menu-item{
+  border-bottom: 1px solid transparent;
+  transition: all 0.5s ease-in-out;
+  margin: 1rem;
+  color: cyan;
+  text-decoration: none !important;
+}
+
+.menu-item:hover{
+  cursor: pointer;
+  border-color: cyan;
+}
 
 
 .Board {

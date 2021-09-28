@@ -3,15 +3,19 @@ import vueIcon from "../images/vue.png"
 import expressIcon from "../images/express.png"
 import springIcon from "../images/spring-boot.png"
 
+import colorsPalettes from "../images/reactColors.png"
+import lightsOut from "../images/lights-out.png"
+
 const projectsMetadata = [
 	{
 		name: "React Color Palettes",
 		icon: reactIcon,
 		type: "React",
-		shortDescription: "Require description ....",
+		shortDescription: "This is a color picker react class based application .... ",
 		description: "",
 		path: "/color-palettes",
 		fullDescriptionPath: "/",
+		imgSrc: colorsPalettes,
 	},
 	{
 		name: "Lights Out ",
@@ -19,8 +23,9 @@ const projectsMetadata = [
 		type: "React",
 		shortDescription: "Require description ....",
 		description: "",
-		path: "/colorPicker",
+		path: "/games/lights-out",
 		fullDescriptionPath: "/",
+		imgSrc: lightsOut,
 	},
 	{
 		name: "Nordana Gard",

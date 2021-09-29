@@ -35,7 +35,7 @@ class Navbar extends Component {
 		return (
 			<nav className={classes.Navbar}>
 				<div className={classes.logo}>
-					<Link to="/">Color Palette</Link>
+					<Link to="/color-palettes">Color Palette</Link>
 				</div>
 				{hasSlider && (
 					<div>

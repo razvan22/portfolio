@@ -12,7 +12,7 @@ function ProjectItem(props) {
 	const { project } = props;
 	
 	return (
-		<Grid item xs={12} md={6} m={2}>
+		<Grid item xs={12}  md={9} lg={6} m={2}>
 			<Box className={classes.box}>
 				<img src={project.imgSrc} alt={project.name} className={classes.img} />
 				<div className={classes.imgCover}></div>

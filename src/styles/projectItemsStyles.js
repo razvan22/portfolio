@@ -37,8 +37,9 @@ const projectItemStyles = makeStyles((theme) => ({
 		left: "2rem",
 		textTransform: "uppercase",
 		fontFamily: "Gudea, sans-serif",
-		fontSize: "25px",
+		fontSize: "20px",
 		fontWeight: 700,
+		[theme.breakpoints.down("sm")]: {},
 		[theme.breakpoints.up("sm")]: {
 			fontSize: "29px",
 		},
@@ -49,11 +50,12 @@ const projectItemStyles = makeStyles((theme) => ({
 		bottom: "0%",
 		left: "2rem",
 		fontWeight: 200,
-		fontSize: "12px",
+		fontSize: "10px",
 		opacity: 0,
 		transition: "opacity 0.8s ease-in-out",
 		[theme.breakpoints.down("sm")]: {
-			opacity: 1
+			bottom: "6%",
+			opacity: 1,
 		},
 		[theme.breakpoints.up("sm")]: {
 			fontSize: "15px",
@@ -62,15 +64,20 @@ const projectItemStyles = makeStyles((theme) => ({
 	link: {
 		position: "absolute",
 		fontSize: "15px",
+		fontWeight: "bold",
 		color: "white",
 		right: "2rem",
-		bottom: "5%",
+		bottom: "1%",
 		borderBottom: "1px solid transparent",
 		transition: "all ease-in-out 0.2s",
 		"&:hover": {
 			cursor: "pointer",
 			borderColor: "white",
-			color: "#bbdefb",
+			color: "#e1f5fe",
+		},
+		[theme.breakpoints.down("sm")]: {
+			right: "1rem",
+			bottom: 0,
 		},
 	},
 }));

@@ -10,7 +10,7 @@ import img from "../assets/images/reactColors.png";
 function ProjectItem(props) {
 	const classes = projectItemStyles();
 	const { project } = props;
-	console.log(project);
+	
 	return (
 		<Grid item xs={12} md={6} m={2}>
 			<Box className={classes.box}>

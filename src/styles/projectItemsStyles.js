@@ -36,9 +36,12 @@ const projectItemStyles = makeStyles((theme) => ({
 		bottom: "10%",
 		left: "2rem",
 		textTransform: "uppercase",
-		fontSize: "29px",
 		fontFamily: "Gudea, sans-serif",
+		fontSize: "25px",
 		fontWeight: 700,
+		[theme.breakpoints.up("sm")]: {
+			fontSize: "29px",
+		},
 	},
 	projectDescription: {
 		color: "white",
@@ -46,9 +49,15 @@ const projectItemStyles = makeStyles((theme) => ({
 		bottom: "0%",
 		left: "2rem",
 		fontWeight: 200,
-		fontSize: "19px",
+		fontSize: "12px",
 		opacity: 0,
 		transition: "opacity 0.8s ease-in-out",
+		[theme.breakpoints.down("sm")]: {
+			opacity: 1
+		},
+		[theme.breakpoints.up("sm")]: {
+			fontSize: "15px",
+		},
 	},
 	link: {
 		position: "absolute",

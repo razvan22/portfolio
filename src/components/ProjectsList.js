@@ -13,7 +13,7 @@ export default function ProjectsList() {
 	const classes = projectsListStyles();
 	const { projectsMetadata } = useContext(ProjectsMetadataContext);
 	const projects = projectsMetadata.map((project) => (
-		<ProjectItem project={project} />
+		<ProjectItem key={project.name} project={project} />
 	));
 
 	return (

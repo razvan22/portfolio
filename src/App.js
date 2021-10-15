@@ -8,6 +8,7 @@ import ColorPalettes from "./web-apps/color-palettes/ColorPalettes";
 import AroundTheWorld from "./web-apps/raound-the-world/AroundTheWorld";
 import ProjectsMetadataProvider from "./assets/contexts/projectsListContext";
 
+
 import "./App.css";
 
 function App() {

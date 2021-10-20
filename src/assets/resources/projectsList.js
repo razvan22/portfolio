@@ -8,10 +8,20 @@ import lightsOut from "../images/lights-out.png"
 
 const projectsMetadata = [
 	{
+		name: "Around The World",
+		icon: springIcon,
+		type: "Spring & React",
+		shortDescription: "Require description ....",
+		description: "",
+		path: "/around-the-world",
+		fullDescriptionPath: "/",
+	},
+	{
 		name: "React Color Palettes",
 		icon: reactIcon,
 		type: "React",
-		shortDescription: "This is a color picker react class based application .... ",
+		shortDescription:
+			"This is a color picker react class based application .... ",
 		description: "",
 		path: "/color-palettes",
 		fullDescriptionPath: "/",
@@ -40,15 +50,6 @@ const projectsMetadata = [
 		name: "Munchies Burgers",
 		icon: expressIcon,
 		type: "Express",
-		shortDescription: "Require description ....",
-		description: "",
-		path: "/colorPicker",
-		fullDescriptionPath: "/",
-	},
-	{
-		name: "Global Travel",
-		icon: springIcon,
-		type: "Spring & React",
 		shortDescription: "Require description ....",
 		description: "",
 		path: "/colorPicker",

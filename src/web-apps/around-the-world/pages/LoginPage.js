@@ -24,7 +24,8 @@ function LoginPage({history}) {
 	const [passwordValue, handlePasswordChange, resetPassword] = useInput("");
 	const { jwtToken, setJwtToken, user, setUser } = useContext(UserContext);
 	const [openDialog, setOpenDialog] = useState(false);
-
+	
+	
 	const handleClose = () => {
 		setOpenDialog(false);
 	};

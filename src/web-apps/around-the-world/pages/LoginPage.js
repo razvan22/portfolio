@@ -12,24 +12,30 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
+import Checkbox from "@mui/material/Checkbox";
+import Grid from "@mui/material/Grid";
 
 import { UserContext } from "../context/UserContext";
 import useInput from "../customHooks/useInputState";
 import FetchUser from "../customHooks/fetchUser";
-import {StyledLink} from "../styles/loginStyles";
+import {StyledLink, loginStyles} from "../styles/loginStyles";
+import Navbar from "../components/Navbar";
 
 function LoginPage({history}) {
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");
 	const [passwordValue, handlePasswordChange, resetPassword] = useInput("");
 	const { jwtToken, setJwtToken, user, setUser } = useContext(UserContext);
 	const [openDialog, setOpenDialog] = useState(false);
+	const [checkBoxChecked, setChecked] = useState(false);
+	const classes = loginStyles();
 	
-	
+	const handleCheckBoxChange = (event) => {
+		setChecked(event.target.checked);
+	};
+
 	const handleClose = () => {
 		setOpenDialog(false);
 	};
-
 
 	const login = (e) => {
 		e.preventDefault();
@@ -59,7 +65,7 @@ function LoginPage({history}) {
 		setUser(user);
 		resetEmail();
 		resetPassword();
-		// history.push("/web-apps/around-the-world");
+		history.push("/around-the-world");
 	};
 
 	return (
@@ -73,18 +79,8 @@ function LoginPage({history}) {
 				backgroundColor: "#313538",
 			}}
 		>
-			<Paper
-				component="form"
-				onSubmit={login}
-				sx={{
-					height: "45%",
-					width: "20%",
-					marginTop: "5%",
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-				}}
-			>
+			<Navbar search={false} />
+			<Paper component="form" onSubmit={login} className={classes.loginForm}>
 				<Avatar sx={{ m: 1, bgcolor: "#f62a00", mt: "8%" }}>
 					<LockOutlinedIcon />
 				</Avatar>
@@ -107,11 +103,21 @@ function LoginPage({history}) {
 					onChange={handlePasswordChange}
 					id="outlined-password-required"
 					label="Password*"
-					type="password"
+					type={checkBoxChecked ? "text" : "password"}
 					autoComplete="current-password"
 					sx={{ width: "65%", marginTop: "5%" }}
 					size="small"
 				/>
+				<Box sx={{ width: "70%", my: 1 }}>
+					<Checkbox
+						checked={checkBoxChecked}
+						onChange={handleCheckBoxChange}
+						inputProps={{ "aria-label": "controlled" }}
+					/>
+					<Typography variant="caption" gutterBottom>
+						Show password
+					</Typography>
+				</Box>
 				<Button
 					type="submit"
 					variant="contained"
@@ -121,10 +127,11 @@ function LoginPage({history}) {
 				</Button>
 				<StyledLink
 					variant="body2"
-					mt={8}
+					mt={7}
+					pb={3}
 					onClick={() => history.push("/around-the-world/signup")}
 				>
-					{"Don't have an account? Sign Up"}
+					Don't have an account? Sign Up
 				</StyledLink>
 			</Paper>
 			<Dialog

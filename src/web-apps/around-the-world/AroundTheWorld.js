@@ -24,7 +24,7 @@ function AroundTheWorld() {
 	return (
 	
 		<div className={classes.cover}>
-			<Navbar />
+			<Navbar search={true}/>
 			{loading ? (
 				<Backdrop
 					sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}

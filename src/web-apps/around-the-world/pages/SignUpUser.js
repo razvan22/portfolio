@@ -1,33 +1,50 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
+
 
 import { StyledFormControl, Root, signUpStyles } from "../styles/signUpStyles";
 import ToggleBooleanState from "../customHooks/ToggleBooleanState";
 import AlertDialog from "../components/AlertDialog";
 import useInput from "../customHooks/useInputState";
+import Navbar from "../components/Navbar";
 
-function SignUpUser() {
+function SignUpUser({history}) {
 	const [firstName, handleFirstNameChange, resetFirstName] = useInput("");
 	const [lastName, handleLastNameChange, resetLastName] = useInput("");
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");
 	const [passwordValue, handlePasswordChange, resetPassword] = useInput("");
-	const [confirmPasswordValue, handleConfirmPasswordChange,resetConfirmPassword] = useInput("");
+	const [confirmPasswordValue, handleConfirmPasswordChange, resetConfirmPassword] = useInput("");
 
-	const [open, toggleOpen] = ToggleBooleanState();
+	const [alertDialogOpen, toggleAlertDialogOpen] = ToggleBooleanState();
 	const [passwordMatch, setPasswordMatch] = useState(true);
 	const [message, setMessage] = useState();
-  const [messageType, setMessageType] = useState();
+	const [messageType, setMessageType] = useState();
+	const [helperText, setHelperText] = useState('');
+	const [checkBoxChecked, setChecked] = useState(false);
 
 	const checkIfPasswordsMatch = () => {
 		setPasswordMatch(passwordValue === confirmPasswordValue);
 	};
 
+	const handleCheckBoxChange = (event) => {
+		setChecked(event.target.checked);
+	};
+
+	const clearForm = () => {
+		resetFirstName();
+		resetLastName();
+		resetPassword();
+		resetConfirmPassword();
+		resetEmail();
+	}
+
 	const signUpNewUser = (e) => {
+		setHelperText("");
 		e.preventDefault();
 		checkIfPasswordsMatch();
 
@@ -40,8 +57,10 @@ function SignUpUser() {
 			isActive: true,
 		};
 
-    if(passwordMatch){
-      console.log(user);
+		if (passwordValue !== confirmPasswordValue) {
+			setHelperText("Passwords didn’t match.");
+		}
+		if (passwordValue === confirmPasswordValue) {
 			axios
 				.post("http://localhost:8080/api/v1/user/new", user, {
 					headers: {
@@ -50,29 +69,32 @@ function SignUpUser() {
 					},
 				})
 				.then((res) => {
+					clearForm();
 					setMessageType("success");
-          setMessage(res.data.message)
-					toggleOpen();
+					setMessage(res.data.message);
+					toggleAlertDialogOpen();
 				})
 				.catch((err) => {
 					setMessageType("error");
 					setMessage(err.response.data.message);
-					toggleOpen();
+					toggleAlertDialogOpen();
 				});
 		}
-
-	
 	};
 
 	return (
 		<Root>
+			<Navbar search={false} />
 			<AlertDialog
-				open={open}
-				handleClose={toggleOpen}
+				open={alertDialogOpen}
+				handleClose={toggleAlertDialogOpen}
 				message={message}
 				type={messageType}
 			/>
-			<StyledFormControl component="form" onSubmit={signUpNewUser}>
+			<StyledFormControl
+				component="form"
+				onSubmit={signUpNewUser}
+			>
 				<Typography
 					p={{ xs: 1 }}
 					variant="h5"
@@ -101,6 +123,8 @@ function SignUpUser() {
 							id="outlined-required"
 							label="Last Name"
 							size="small"
+							onChange={handleLastNameChange}
+							value={lastName}
 						/>
 					</Grid>
 					<Grid item xs={12}>
@@ -124,13 +148,11 @@ function SignUpUser() {
 							required
 							id="outlined-required"
 							label="Password"
-							// type="password"
-							type="text"
+							type={checkBoxChecked ? "text" : "password"}
 							fullWidth
 							size="small"
 							onChange={handlePasswordChange}
 							value={passwordValue}
-							error={!passwordMatch}
 						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
@@ -139,16 +161,26 @@ function SignUpUser() {
 							required
 							id="outlined-required"
 							label="Confirm"
-							// type="password"
-							type="text"
+							type={checkBoxChecked ? "text" : "password"}
 							fullWidth
 							size="small"
 							onChange={handleConfirmPasswordChange}
 							value={confirmPasswordValue}
+							helperText={helperText}
 						/>
 					</Grid>
 				</Grid>
 				<Grid container direction="row" justifyContent="end" p={{ xs: 1 }}>
+					<Grid item item xs={12}>
+						<Checkbox
+							checked={checkBoxChecked}
+							onChange={handleCheckBoxChange}
+							inputProps={{ "aria-label": "controlled" }}
+						/>
+						<Typography variant="caption" gutterBottom>
+							Show password
+						</Typography>
+					</Grid>
 					<Grid item item xs={12} sm={6} md={5}>
 						<Button
 							type="submit"
@@ -164,7 +196,6 @@ function SignUpUser() {
 						>
 							Sign Up
 						</Button>
-						<button onClick={signUpNewUser}>Add</button>
 					</Grid>
 				</Grid>
 			</StyledFormControl>

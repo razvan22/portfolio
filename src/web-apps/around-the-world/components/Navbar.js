@@ -26,7 +26,8 @@ import {
 
 
 
-function Navbar() {
+function Navbar(props) {
+	const {search} = props;
 	const history = useHistory();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
@@ -53,17 +54,20 @@ function Navbar() {
 					justifyContent: "end",
 				}}
 			>
-				<Toolbar>
-					<Search>
-						<SearchIconWrapper>
-							<SearchIcon />
-						</SearchIconWrapper>
-						<StyledInputBase
-							placeholder="Search…"
-							inputProps={{ "aria-label": "search" }}
-						/>
-					</Search>
-				</Toolbar>
+				{search ?
+				(
+					<Toolbar>
+						<Search>
+							<SearchIconWrapper>
+								<SearchIcon />
+							</SearchIconWrapper>
+							<StyledInputBase
+								placeholder="Search…"
+								inputProps={{ "aria-label": "search" }}
+							/>
+						</Search>
+					</Toolbar>
+				) : ''}
 				<Tooltip title="Account settings" sx={{ alignSelf: "end" }}>
 					<IconButton onClick={handleClick} size="large" sx={{ ml: 1, mr: 4 }}>
 						<Avatar

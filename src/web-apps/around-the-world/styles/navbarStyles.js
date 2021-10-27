@@ -6,6 +6,7 @@ const navbarStyles = makeStyles((theme) => ({
 	navbar: {
 		backgroundColor: alpha("#212121", 0.5),
 		position: "relative",
+		width: "100vw"
 	},
 }));
 

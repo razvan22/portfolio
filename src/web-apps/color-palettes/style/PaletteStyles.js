@@ -1,6 +1,6 @@
 import ScreenSizes from "./ScreenSizes"
 
-export default {
+const PaletteStyles = {
 	Palette: {
 		height: "100vh",
 		display: "flex",
@@ -53,3 +53,4 @@ export default {
 		},
 	},
 };
+export default PaletteStyles;

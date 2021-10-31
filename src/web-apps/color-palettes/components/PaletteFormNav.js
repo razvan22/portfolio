@@ -6,7 +6,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -39,7 +38,7 @@ class PaletteFormNav extends Component {
 	}
 
 	render() {
-		const { classes, open, savePalette, hideForm } = this.props;
+		const { classes, open, savePalette } = this.props;
 		return (
 			<div className={classes.root}>
 				<CssBaseline />

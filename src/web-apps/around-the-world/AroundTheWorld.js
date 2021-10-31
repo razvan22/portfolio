@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -16,10 +15,16 @@ function AroundTheWorld() {
 	const { jwtToken, setUser } = useContext(UserContext);
 	const [loading, setLoading] = useState(false);
 
-	useEffect(async () => {
-		let user = await FetchUser(jwtToken);
-		setUser(user);
-	}, []);
+	useEffect(() => {
+		setLoading(true);
+
+		async function fetchData() {
+			let user = await FetchUser(jwtToken);
+			setUser(user);
+			setLoading(false);
+		}
+		fetchData();
+	}, [jwtToken, setUser]);
 
 	return (
 	

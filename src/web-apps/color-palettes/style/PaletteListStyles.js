@@ -2,7 +2,7 @@ import ScreenSizes from "./ScreenSizes";
 import bg from "./background.svg"
 
 
-export default {
+const PaletteListStyles = {
 	"@global": {
 		".fade-exit":{
 			opacity: 1,
@@ -65,3 +65,4 @@ export default {
 		},
 	},
 };
+export default PaletteListStyles;

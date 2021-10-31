@@ -13,7 +13,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Checkbox from "@mui/material/Checkbox";
-import Grid from "@mui/material/Grid";
 
 import { UserContext } from "../context/UserContext";
 import useInput from "../customHooks/useInputState";
@@ -24,7 +23,7 @@ import Navbar from "../components/Navbar";
 function LoginPage({history}) {
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");
 	const [passwordValue, handlePasswordChange, resetPassword] = useInput("");
-	const { jwtToken, setJwtToken, user, setUser } = useContext(UserContext);
+	const { jwtToken, setJwtToken, setUser } = useContext(UserContext);
 	const [openDialog, setOpenDialog] = useState(false);
 	const [checkBoxChecked, setChecked] = useState(false);
 	const classes = loginStyles();

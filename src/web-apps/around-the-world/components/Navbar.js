@@ -1,14 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, {  useContext } from "react";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip"; 
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import LoginIcon from "@mui/icons-material/Login";
-import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import Toolbar from "@mui/material/Toolbar";
 import AddIcon from "@mui/icons-material/Add";
@@ -16,7 +9,6 @@ import AddIcon from "@mui/icons-material/Add";
 import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../context/UserContext";
-import LoggedUserMenu from "./LoggedUserMenu";
 import {
 	navbarStyles,
 	Search,
@@ -31,9 +23,7 @@ function Navbar(props) {
 	const history = useHistory();
 
 	const classes = navbarStyles();
-	const { user, setUser, setJwtToken } = useContext(UserContext);
-		const handleClick = (event) => {
-		};
+	const { user } = useContext(UserContext);
 
 
 	return (

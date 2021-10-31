@@ -1,7 +1,7 @@
 import chroma from "chroma-js";
 import ScreenSizes from "./ScreenSizes";
 
-export default {
+const  ColorBoxStyles = {
 	copyText: {
 		color: (props) =>
 			chroma(props.background).luminance() >= 0.6 ? "dark-text" : "light-text",
@@ -140,3 +140,5 @@ export default {
 		},
 	},
 };
+
+export default ColorBoxStyles;

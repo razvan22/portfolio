@@ -1,6 +1,6 @@
 import ScreenSizes from "./ScreenSizes";
 
-export default {
+const NavBarStyles =  {
 	Navbar: {
 		display: "flex",
 		alignItems: "center",
@@ -60,3 +60,5 @@ export default {
 		marginRight: "1rem",
 	},
 };
+
+export default NavBarStyles;

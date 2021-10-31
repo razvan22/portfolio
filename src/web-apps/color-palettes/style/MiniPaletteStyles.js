@@ -1,4 +1,4 @@
-export default {
+const MiniPaletteStyles = {
 	root: {
 		border: "1px solid black",
 		backgroundColor: "white",
@@ -55,3 +55,5 @@ export default {
 		transition: "all 0.3s ease-in-out"
 	},
 };
+
+export default MiniPaletteStyles;

@@ -5,10 +5,7 @@ import HomePage from "./pages/HomePage";
 import AboutMe from "./pages/AboutMe";
 import LightsOut from "./games/lights-out/LightsOut";
 import ColorPalettes from "./web-apps/color-palettes/ColorPalettes";
-import AroundTheWorld from "./web-apps/around-the-world/AroundTheWorld";
 import ProjectsMetadataProvider from "./assets/contexts/projectsListContext";
-import LoginPage from "./web-apps/around-the-world/pages/LoginPage";
-import UserContextProvider from "./web-apps/around-the-world/context/UserContext";
 import AroundTheWorldApp from "./web-apps/around-the-world/AroundTheWorldApp";
 
 

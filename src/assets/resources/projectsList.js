@@ -19,7 +19,7 @@ const projectsMetadata = [
 	{
 		name: "React Color Palettes",
 		icon: reactIcon,
-		type: "React",
+		type: "React Class",
 		shortDescription:
 			"This is a color picker react class based application .... ",
 		description: "",

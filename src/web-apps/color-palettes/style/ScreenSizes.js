@@ -1,6 +1,6 @@
 
 
-export default {
+const screenSizes = {
   up(){
 
   },
@@ -15,3 +15,5 @@ export default {
     return `@media (max-width: ${sizes[size]})`;
   }
 }
+
+export default screenSizes;

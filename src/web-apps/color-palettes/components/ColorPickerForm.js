@@ -47,7 +47,7 @@ class ColorPickerForm extends Component {
 	}
 
 	render() {
-		const { isPaletteFull, addNewColor, classes } = this.props;
+		const { isPaletteFull, classes } = this.props;
 		return (
 			<div className={classes.root}>
 				<ChromePicker

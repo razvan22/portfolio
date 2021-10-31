@@ -6,7 +6,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import FolderOpenOutlinedIcon from "@mui/icons-material/FolderOpenOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import { navbarStyles , NavButton } from "../../styles/navbarStyles";
-import { ThemeProvider } from "@mui/private-theming";
+
 
 function Navbar() {
 	const classes = navbarStyles();

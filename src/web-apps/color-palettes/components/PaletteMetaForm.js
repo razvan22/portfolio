@@ -10,7 +10,6 @@ import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 
 function PaletteMetaForm(props) {
-	const [open, setOpen] = useState(true);
 	const [stage, setStage] = useState("form");
 	const [newPaletteName, setNewPaletteName] = useState("");
 	const { savePalette } = props;
@@ -20,7 +19,7 @@ function PaletteMetaForm(props) {
 				({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
 			)
 		);
-	}, []);
+	}, [props.palettes]);
 
 	function handleChange(evt) {
 		setNewPaletteName(evt.target.value);

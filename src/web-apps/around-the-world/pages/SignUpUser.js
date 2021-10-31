@@ -7,13 +7,13 @@ import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
 
 
-import { StyledFormControl, Root, signUpStyles } from "../styles/signUpStyles";
+import { StyledFormControl, Root } from "../styles/signUpStyles";
 import ToggleBooleanState from "../customHooks/ToggleBooleanState";
 import AlertDialog from "../components/AlertDialog";
 import useInput from "../customHooks/useInputState";
 import Navbar from "../components/Navbar";
 
-function SignUpUser({history}) {
+function SignUpUser() {
 	const [firstName, handleFirstNameChange, resetFirstName] = useInput("");
 	const [lastName, handleLastNameChange, resetLastName] = useInput("");
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");

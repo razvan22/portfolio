@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
 
 import Navbar from "../components/Navbar";
 import {
@@ -10,14 +11,16 @@ import {
 	Form,
 } from "../styles/postFormStyles";
 import useInput from "../customHooks/useInputState";
-import Button from "@mui/material/Button";
 import useLocalStorage from "../customHooks/jwtReducer";
 import LocationSelector from "../components/LocationSelector";
+import ImageUploader from "../components/ImageUploader";
 
 function PostForm() {
 	const [location, setLocation] = useState();
 	const [title, handelTitleChange] = useInput("");
 	const [description, handelDescriptionChange] = useInput("");
+	const [images, setImages] = useState([]);
+
 
 	const [continentsList, setContinentsList] = useLocalStorage(
 		"continents",
@@ -37,6 +40,17 @@ function PostForm() {
 	// 	images: [],
 	// });
 
+	const submitPost = (e) => {
+		e.preventDefault();
+		const post = {
+			title: title,
+			description: description,
+			location: location,
+			images : images,
+		}
+		console.info('POST :', post)
+
+	}
 
 	const fetchContinentsList = () => {
 		fetch("https://countries.trevorblades.com/", {
@@ -76,7 +90,7 @@ function PostForm() {
 				<InfoPanel>
 					<h3>Share Your Experience With The World 😉</h3>
 				</InfoPanel>
-				<Form>
+				<Form component="form" onSubmit={submitPost}>
 					<Typography variant="h5" gutterBottom component="h5">
 						Create a post
 					</Typography>
@@ -102,10 +116,20 @@ function PostForm() {
 					/>
 					{continentsList !== null && (
 						<LocationSelector
+						
 							setSelectedLocation={setLocation}
 							continentsList={continentsList}
 						/>
 					)}
+					<ImageUploader setImages={setImages} />
+					<Button
+						type="submit"
+						size="large"
+						sx={{ marginLeft: "87%", mt: 2 }}
+						variant="contained"
+					>
+						Publish
+					</Button>
 				</Form>
 			</StyledStack>
 		</Root>

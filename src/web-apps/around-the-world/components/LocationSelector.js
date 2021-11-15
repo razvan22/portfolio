@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
@@ -10,7 +9,6 @@ import useInputState from "../customHooks/useInputState";
 function LocationSelector(props) {
 	const { setSelectedLocation, continentsList } = props;
 	const [countries, setCountries] = useState([]);
-	const [country, setCountry] = useState({});
 	const [address, handelAddressChange, clearAddress] = useInputState("");
 	const [location, setLocation] = useState({
 		continent: "",
@@ -88,6 +86,7 @@ function LocationSelector(props) {
 					renderInput={(params) => (
 						<TextField
 							{...params}
+							required
 							label="Choose a continent"
 							inputProps={{
 								...params.inputProps,
@@ -123,6 +122,7 @@ function LocationSelector(props) {
 						<TextField
 							{...params}
 							label="Choose a country"
+							required
 							inputProps={{
 								...params.inputProps,
 								autoComplete: "new-password", // disable autocomplete and autofill
@@ -132,6 +132,7 @@ function LocationSelector(props) {
 				/>
 				<TextField
 					sx={{ width: { md: "33%" }, marginTop: { xs: 2, md: 0 } }}
+					required
 					label="Address"
 					variant="outlined"
 					onChange={handelLocationChange}

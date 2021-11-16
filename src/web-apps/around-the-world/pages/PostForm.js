@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import axios from "axios";
 
 import Navbar from "../components/Navbar";
 import {
@@ -9,48 +12,63 @@ import {
 	InfoPanel,
 	Root,
 	Form,
+	Subtitle,
 } from "../styles/postFormStyles";
 import useInput from "../customHooks/useInputState";
 import useLocalStorage from "../customHooks/jwtReducer";
 import LocationSelector from "../components/LocationSelector";
 import ImageUploader from "../components/ImageUploader";
+import { UserContext } from "../context/UserContext";
 
-function PostForm() {
+function PostForm({ history }) {
 	const [location, setLocation] = useState();
 	const [title, handelTitleChange] = useInput("");
 	const [description, handelDescriptionChange] = useInput("");
 	const [images, setImages] = useState([]);
-
+	const { jwtToken, loading, setLoading } = useContext(UserContext);
 
 	const [continentsList, setContinentsList] = useLocalStorage(
 		"continents",
 		null
 	);
 
-	// const [post, setPost] = useState({
-	// 	postDate: "",
-	// 	author: { id: 1 },
-	// 	location: {
-	// 		continent: "",
-	// 		country: "",
-	// 		address: "",
-	// 	},
-	// 	title: "",
-	// 	content: "",
-	// 	images: [],
-	// });
-
 	const submitPost = (e) => {
 		e.preventDefault();
+		const form_data = new FormData();
+		setLoading(true);
+
 		const post = {
 			title: title,
 			description: description,
 			location: location,
-			images : images,
-		}
-		console.info('POST :', post)
+		};
 
-	}
+		images.forEach((img) => form_data.append("imageFile", img));
+		form_data.append('post', JSON.stringify(post))
+
+		axios
+			.post("http://localhost:8080/api/v1/post/new", form_data, {
+				headers: {
+					"Allow-Origin": "*",
+					"content-type": "multipart/form-data",
+					Authorization: jwtToken,
+				},
+			})
+			.then((res) => {
+				if (res.status === 201) {
+					setTimeout(() => {
+						setLoading(false);
+						history.push("/around-the-world");
+					}, 2000);
+				}
+			})
+			.catch((err) => {
+				setTimeout(() => {
+					setLoading(false);
+				}, 2000);
+			});
+	};
+
 
 	const fetchContinentsList = () => {
 		fetch("https://countries.trevorblades.com/", {
@@ -82,13 +100,13 @@ function PostForm() {
 			fetchContinentsList();
 		}
 	}, [continentsList]);
-	
+
 	return (
 		<Root>
 			<Navbar search={false} />
 			<StyledStack direction="row">
 				<InfoPanel>
-					<h3>Share Your Experience With The World 😉</h3>
+					<Subtitle>Share Your Experience With The World 😉</Subtitle>
 				</InfoPanel>
 				<Form component="form" onSubmit={submitPost}>
 					<Typography variant="h5" gutterBottom component="h5">
@@ -116,22 +134,26 @@ function PostForm() {
 					/>
 					{continentsList !== null && (
 						<LocationSelector
-						
 							setSelectedLocation={setLocation}
 							continentsList={continentsList}
 						/>
 					)}
 					<ImageUploader setImages={setImages} />
-					<Button
-						type="submit"
-						size="large"
-						sx={{ marginLeft: "87%", mt: 2 }}
-						variant="contained"
-					>
+					<Button type="submit" size="large" sx={{ mt: 2 }} variant="contained">
 						Publish
 					</Button>
 				</Form>
 			</StyledStack>
+			{loading ? (
+				<Backdrop
+					sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+					open={loading}
+				>
+					<CircularProgress color="inherit" />
+				</Backdrop>
+			) : (
+				""
+			)}
 		</Root>
 	);
 }

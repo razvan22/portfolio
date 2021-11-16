@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
+import postBg from '../assets/post-bg.jpg'
 
 const Root = styled('div')(({theme}) =>(({
   height:"100vh",
@@ -12,13 +13,15 @@ const StyledStack = styled(Stack)(({ theme }) => ({
 }));
 
 const InfoPanel = styled("div")(({ theme }) => ({
-  display: "none",
-  height:'100%',
-  backgroundColor: theme.palette.info.main,
-  [theme.breakpoints.up("sm")]: {
-    display:"block",
-    width:"43%"
-  }
+	display: "none",
+	height: "100%",
+	backgroundImage: `url(${postBg})`,
+  backgroundPosition: "center", 
+  backgroundSize: "cover",
+	[theme.breakpoints.up("sm")]: {
+		display: "block",
+		width: "43%",
+	},
 }));
 
 const Form = styled('form')(({theme}) =>({
@@ -29,9 +32,12 @@ const Form = styled('form')(({theme}) =>({
   }
 }));
 
-const Subtitle = styled("h2")(({ theme }) => ({
-  paddingLeft: 5,
-
+const Subtitle = styled("h1")(({ theme }) => ({
+	paddingLeft: 5,
+	textAlign: "center",
+	color: "#153344",
+	paddingTop: "20vh",
+  
 }));
 
 

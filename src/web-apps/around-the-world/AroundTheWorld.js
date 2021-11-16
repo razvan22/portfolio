@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -8,23 +8,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Navbar from "./components/Navbar";
 import aroundTheWorldStyles from "./styles/aroundTheWorldStyles";
 import { UserContext } from "./context/UserContext";
-import FetchUser from "./customHooks/fetchUser";
 
 function AroundTheWorld() {
 	const classes = aroundTheWorldStyles();
-	const { jwtToken, setUser } = useContext(UserContext);
-	const [loading, setLoading] = useState(false);
+	const { loading} = useContext(UserContext);
 
-	useEffect(() => {
-		setLoading(true);
 
-		async function fetchData() {
-			let user = await FetchUser(jwtToken);
-			setUser(user);
-			setLoading(false);
-		}
-		fetchData();
-	}, [jwtToken, setUser]);
 
 	return (
 	

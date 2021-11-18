@@ -3,8 +3,8 @@ import cover from "../assets/cover.jpg"
 
 const aroundTheWorldStyles = makeStyles((theme) => ({
 	cover: {
-		width: "100vw",
-		height: "80vh",
+		width: "100%",
+		height: "50vh",
 	  backgroundImage: `url(${cover})`,
     backgroundPosition: "center", 
     backgroundSize: "cover"

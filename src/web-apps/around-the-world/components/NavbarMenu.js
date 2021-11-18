@@ -4,7 +4,7 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import PersonIcon from "@mui/icons-material/Person";
-
+import { deepOrange } from "@mui/material/colors";
 
 
 import LoggedUserMenu from "./LoggedUserMenu";
@@ -32,7 +32,7 @@ function NavbarMenu() {
 						sx={{
 							width: 34,
 							height: 34,
-							backgroundColor: "red",
+							backgroundColor: deepOrange[500],
 							padding: 0.2,
 						}}
 					>

@@ -47,7 +47,7 @@ function PostForm({ history }) {
 		form_data.append('post', JSON.stringify(post))
 
 		axios
-			.post("http://localhost:8080/api/v1/post/new", form_data, {
+			.post("http://192.168.8.102:8080/api/v1/post/new", form_data, {
 				headers: {
 					"Allow-Origin": "*",
 					"content-type": "multipart/form-data",
@@ -99,6 +99,8 @@ function PostForm({ history }) {
 		if (continentsList === null) {
 			fetchContinentsList();
 		}
+		setLoading(false);
+
 	}, [continentsList]);
 
 	return (

@@ -5,6 +5,8 @@ import Tooltip from "@mui/material/Tooltip";
 import SearchIcon from "@mui/icons-material/Search";
 import Toolbar from "@mui/material/Toolbar";
 import AddIcon from "@mui/icons-material/Add";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useHistory } from "react-router-dom";
 
@@ -24,7 +26,7 @@ function Navbar(props) {
 	const history = useHistory();
 
 	const classes = navbarStyles();
-	const { jwtToken, user, setUser} = useContext(UserContext);
+	const { jwtToken, user, setUser, loading} = useContext(UserContext);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -41,6 +43,7 @@ function Navbar(props) {
 				sx={{
 					display: "flex",
 					justifyContent: "end",
+					boxShadow: 3,
 				}}
 			>
 				{search ? (
@@ -76,9 +79,14 @@ function Navbar(props) {
 						</IconButton>
 					</Tooltip>
 				)}
-
 				<NavbarMenu />
 			</Box>
+			<Backdrop
+				sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+				open={loading}
+			>
+				<CircularProgress color="inherit" />
+			</Backdrop>
 		</div>
 	);
 }

@@ -9,7 +9,7 @@ import Typical from "react-typical";
 import Navbar from "../components/navbar/Navbar";
 import ProjectsList from "../components/ProjectsList";
 import { homePageStyles, StyledTypography } from "../styles/homePageStyles";
-import profileImg from "../assets/images/me.jpg";
+import profileImg from "../assets/images/me.jpeg";
 
 function HomePage() {
 	const classes = homePageStyles();

@@ -7,15 +7,15 @@ import PersonIcon from "@mui/icons-material/Person";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import LocationOn from "@material-ui/icons/LocationOn";
-
-import img from "../assets/post-bg.jpg";
+import { Link } from "react-router-dom";
+import ModeCommentIcon from "@mui/icons-material/ModeComment";
 
 import styles from "../styles/postCardStyles";
 
 function PostCard(props) {
 	const classes = styles();
 	const { postObject } = props;
-	const { title, imageList, author, location, description, postDate } =
+	const { title, imageList, author, location, description, postDate, comments } =
 		postObject;
 
 	return (
@@ -37,7 +37,7 @@ function PostCard(props) {
 				N
 			</Avatar>
 			<img
-				src={`http://localhost:8080${imageList[0]}`}
+				src={`http://192.168.8.102:8080${imageList[0].url}`}
 				alt=""
 				className={classes.img}
 			/>
@@ -51,39 +51,49 @@ function PostCard(props) {
 					<Chip
 						sx={{ backgroundColor: "white", right: "1rem" }}
 						icon={<PersonIcon fontSize="small" />}
-						label={author.firstName}
+						label={`${author.firstName} - ${postDate}`}
 					/>
 				</Stack>
 
-				<Typography
-					fontWeight={300}
-					className={classes.title}
-					variant="h4"
-					component="h4"
+				<Link
+					className="post-link"
+					to={{
+						pathname: `/post/${postObject.id}`,
+						data: postObject,
+					}}
 				>
-					{title}
-				</Typography>
+					<Typography
+						fontWeight={300}
+						className={classes.title}
+						variant="h5"
+						component="h5"
+					>
+						{title}
+					</Typography>
+				</Link>
 				<Box
 					fontSize={14}
 					color={deepOrange[300]}
 					display={"flex"}
 					alignItems={"center"}
-					mb={1}
+					mt={1}
 				>
 					<LocationOn fontSize="small" className={styles.locationIcon} />
 					<span>{location.country}</span>
 				</Box>
-				<Typography noWrap gutterBottom variant={"body2"}>
+				<Typography noWrap mt={1} gutterBottom variant={"body2"}>
 					{description}
 				</Typography>
 				<Typography
+					mr={2}
 					align="right"
 					color={"textSecondary"}
 					variant="caption"
 					display="block"
 					gutterBottom
 				>
-					{postDate}
+					<ModeCommentIcon fontSize="small" sx={{ mr: 1 }} />{" "}
+					{` ${comments.length}`}
 				</Typography>
 			</Box>
 		</Box>

@@ -6,6 +6,7 @@ import SignUpUser from "./pages/SignUpUser";
 import PostForm from "./pages/PostForm";
 import AroundTheWorld from "./AroundTheWorld";
 import UserContextProvider from "./context/UserContext";
+import Post from './pages/Post';
 
 function AroundTheWorldApp() {
 	return (
@@ -31,6 +32,7 @@ function AroundTheWorldApp() {
 					path="/around-the-world/newpost"
 					component={PostForm}
 				></Route>
+				<Route exact path="/post/:id" component={Post} ></Route>
 			</Switch>
 		</UserContextProvider>
 	);

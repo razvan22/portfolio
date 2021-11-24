@@ -11,7 +11,7 @@ function AroundTheWorld() {
 
 	return (
 		<div>
-			<Navbar search={true} />
+			<Navbar search={false} />
 			<div className={classes.cover}></div>
 			<PostList />
 		</div>

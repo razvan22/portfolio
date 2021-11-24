@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -12,8 +12,10 @@ import ToggleBooleanState from "../customHooks/ToggleBooleanState";
 import AlertDialog from "../components/AlertDialog";
 import useInput from "../customHooks/useInputState";
 import Navbar from "../components/Navbar";
+import {UserContext} from '../context/UserContext';
 
 function SignUpUser() {
+	const {setLoading} = useContext(UserContext);
 	const [firstName, handleFirstNameChange, resetFirstName] = useInput("");
 	const [lastName, handleLastNameChange, resetLastName] = useInput("");
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");
@@ -81,6 +83,8 @@ function SignUpUser() {
 				});
 		}
 	};
+
+	useEffect(()=>{ setLoading(false)},[])
 
 	return (
 		<Root>

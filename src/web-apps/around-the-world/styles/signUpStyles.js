@@ -13,7 +13,7 @@ const Root = styled("div")(({ theme }) => ({
 	alignItems: "center",
 	width: "100vw",
 	height: "100vh",
-	backgroundColor: "#313538",
+	backgroundColor: "#0f1313",
 }));
 
 const StyledFormControl = styled(Paper)(({ theme }) => ({

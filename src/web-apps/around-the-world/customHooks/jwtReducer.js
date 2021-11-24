@@ -19,7 +19,10 @@ const readLocalStorage = (key, value) => {
     val = JSON.parse(window.localStorage.getItem(key) || null);
 	} catch (e) {
     // if nothing in local storage set value to null
-    val = value.trim();
+		if(val){
+
+			val = value.trim();
+		}
   }
   return val;
 };

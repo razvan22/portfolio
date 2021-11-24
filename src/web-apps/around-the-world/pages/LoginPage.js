@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
@@ -23,7 +23,7 @@ import Navbar from "../components/Navbar";
 function LoginPage({history}) {
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");
 	const [passwordValue, handlePasswordChange, resetPassword] = useInput("");
-	const { jwtToken, setJwtToken, setUser } = useContext(UserContext);
+	const { jwtToken, setJwtToken, setUser, setLoading } = useContext(UserContext);
 	const [openDialog, setOpenDialog] = useState(false);
 	const [checkBoxChecked, setChecked] = useState(false);
 	const classes = loginStyles();
@@ -44,28 +44,32 @@ function LoginPage({history}) {
 		};
 
 		axios
-			.post("http://localhost:8080/login", user, {
+			.post("http://192.168.8.102:8080/login", user, {
 				headers: {
 					"Allow-Origin": "*",
 					"Content-type": "application/json",
 				},
 			})
 			.then((res) => {
+				console.log("REQUEST")
 				if (res.status === 200) {
 					setJwtToken(res.headers.authorization);
 					fetchUserInfo();
-        } 
+				}
 			})
-			.catch((err) => setOpenDialog(true))
+			.catch((err) => setOpenDialog(true));
 	};
 
 	const fetchUserInfo = async () => {
 		let user = await FetchUser(jwtToken);
+		console.log('USER :', user);
 		setUser(user);
 		resetEmail();
 		resetPassword();
 		history.push("/around-the-world");
 	};
+
+	useEffect(()=>{setLoading(false)},[])
 
 	return (
 		<Box
@@ -75,7 +79,7 @@ function LoginPage({history}) {
 				alignItems: "center",
 				width: "100vw",
 				height: "100vh",
-				backgroundColor: "#313538",
+				backgroundColor: "#0f1313",
 			}}
 		>
 			<Navbar search={false} />

@@ -17,6 +17,9 @@ const styles = makeStyles((theme) => ({
 			width: "66%",
 		},
 		[theme.breakpoints.up("lg")]: {
+			width: "58%",
+		},
+		[theme.breakpoints.up("xl")]: {
 			width: "41%",
 		},
 	},
@@ -28,9 +31,7 @@ const styles = makeStyles((theme) => ({
 	},
 
 	title: {},
-	description: {
-	
-	},
+	description: {},
 }));
 
 export default styles;

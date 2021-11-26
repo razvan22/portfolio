@@ -37,7 +37,7 @@ function Navbar(props) {
 	}, [jwtToken, setUser]);
 
 	return (
-		<div>
+		<Box p={0} m={0}>
 			<Box
 				className={classes.navbar}
 				sx={{
@@ -87,7 +87,7 @@ function Navbar(props) {
 			>
 				<CircularProgress color="inherit" />
 			</Backdrop>
-		</div>
+		</Box>
 	);
 }
 

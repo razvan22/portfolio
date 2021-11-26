@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 import axios from "axios";
 
 import { UserContext } from "../context/UserContext";
@@ -13,7 +14,7 @@ import PostCarousel from "../components/PostCarousel";
 import CommentsSection from "../components/CommentsSection";
 
 function Post({ location }) {
-	const { setLoading } = useContext(UserContext);
+	const { setLoading, user } = useContext(UserContext);
 	const [post, setPost] = useState(location.data);
 	const [ratingValue, setRatingValue] = useState();
 
@@ -31,7 +32,7 @@ function Post({ location }) {
 		return () => {
 			setLoading(true);
 		};
-	}, []);
+	}, []); 
 
 	if (post) {
 		return (
@@ -51,7 +52,6 @@ function Post({ location }) {
 						xs={12}
 						lg={10}
 						xl={7}
-						mb={5}
 						sx={{ borderRadius: 1, backgroundColor: "rgb(244, 244, 244)" }}
 					>
 						<PostCarousel imgList={post.imageList} />
@@ -100,24 +100,30 @@ function Post({ location }) {
 									value={post.rating}
 									readOnly
 								/>
-								<Box mt={2}>
-									<Rating
-										sx={{ display: "block" }}
-										name="simple-controlled"
-										value={ratingValue}
-										onChange={(event, newValue) => {
-											setRatingValue(newValue);
-										}}
-									/>
+								{user !== null && (
+									<Box mt={2}>
+										<Rating
+											sx={{ display: "block" }}
+											name="simple-controlled"
+											value={ratingValue}
+											onChange={(event, newValue) => {
+												setRatingValue(newValue);
+											}}
+										/>
 
-									<Button color="error" variant="contained" size="small">
-										Rate This Post
-									</Button>
-								</Box>
+										<Button color="error" variant="contained" size="small">
+											Rate This Post
+										</Button>
+									</Box>
+								)}
 							</Box>
 						</Stack>
+						<Divider />
 						<Box>
-							<CommentsSection />
+							<CommentsSection
+								post={post}
+								comments={post.comments}
+							/>
 						</Box>
 					</Grid>
 				</Grid>

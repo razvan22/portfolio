@@ -51,7 +51,7 @@ function PostCard(props) {
 					<Chip
 						sx={{ backgroundColor: "white", right: "1rem" }}
 						icon={<PersonIcon fontSize="small" />}
-						label={`${author.firstName} - ${postDate}`}
+						label={`${author.firstName} - ${postDate.replaceAll('-', '/')}`}
 					/>
 				</Stack>
 

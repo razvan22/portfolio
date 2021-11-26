@@ -72,92 +72,98 @@ function LoginPage({history}) {
 	useEffect(()=>{setLoading(false)},[])
 
 	return (
-		<Box
-			sx={{
-				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-				width: "100vw",
-				height: "100vh",
-				backgroundColor: "#0f1313",
-			}}
-		>
-			<Navbar search={false} />
-			<Paper component="form" onSubmit={login} className={classes.loginForm}>
-				<Avatar sx={{ m: 1, bgcolor: "#f62a00", mt: "8%" }}>
-					<LockOutlinedIcon />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Sign in
-				</Typography>
-				<TextField
-					required
-					value={emailValue}
-					onChange={handleEmailChange}
-					id="outlined-required"
-					label="Email Address*"
-					variant="outlined"
-					size="small"
-					sx={{ width: "65%", marginTop: "10%" }}
-				/>
-				<TextField
-					required
-					value={passwordValue}
-					onChange={handlePasswordChange}
-					id="outlined-password-required"
-					label="Password*"
-					type={checkBoxChecked ? "text" : "password"}
-					autoComplete="current-password"
-					sx={{ width: "65%", marginTop: "5%" }}
-					size="small"
-				/>
-				<Box sx={{ width: "70%", my: 1 }}>
-					<Checkbox
-						checked={checkBoxChecked}
-						onChange={handleCheckBoxChange}
-						inputProps={{ "aria-label": "controlled" }}
-					/>
-					<Typography variant="caption" gutterBottom>
-						Show password
-					</Typography>
-				</Box>
-				<Button
-					type="submit"
-					variant="contained"
-					sx={{ width: "65%", marginTop: "5%", bgcolor: "#00293c" }}
-				>
-					SIGN IN
-				</Button>
-				<StyledLink
-					variant="body2"
-					mt={7}
-					pb={3}
-					onClick={() => history.push("/around-the-world/signup")}
-				>
-					Don't have an account? Sign Up
-				</StyledLink>
-			</Paper>
-			<Dialog
-				open={openDialog}
-				onClose={handleClose}
-				aria-labelledby="alert-dialog-title"
-				aria-describedby="alert-dialog-description"
+		<div>
+				<Navbar search={false} />
+			<Box
+				sx={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					width: "100vw",
+					height: "100vh",
+					backgroundColor: "#0f1313",
+				}}
 			>
-				<DialogTitle id="alert-dialog-title" align="center" color="error.main">
-					{"Some thing went wrong !"}
-				</DialogTitle>
-				<DialogContent>
-					<DialogContentText id="alert-dialog-description" color="text.main">
-						Please check your username and password and try again.
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button variant="contained" onClick={handleClose} autoFocus>
-						Close
+				<Paper component="form" onSubmit={login} className={classes.loginForm}>
+					<Avatar sx={{ m: 1, bgcolor: "#f62a00", mt: "8%" }}>
+						<LockOutlinedIcon />
+					</Avatar>
+					<Typography component="h1" variant="h5">
+						Sign in
+					</Typography>
+					<TextField
+						required
+						value={emailValue}
+						onChange={handleEmailChange}
+						id="outlined-required"
+						label="Email Address*"
+						variant="outlined"
+						size="small"
+						sx={{ width: "65%", marginTop: "10%" }}
+					/>
+					<TextField
+						required
+						value={passwordValue}
+						onChange={handlePasswordChange}
+						id="outlined-password-required"
+						label="Password*"
+						type={checkBoxChecked ? "text" : "password"}
+						autoComplete="current-password"
+						sx={{ width: "65%", marginTop: "5%" }}
+						size="small"
+					/>
+					<Box sx={{ width: "70%", my: 1 }}>
+						<Checkbox
+							checked={checkBoxChecked}
+							onChange={handleCheckBoxChange}
+							inputProps={{ "aria-label": "controlled" }}
+						/>
+						<Typography variant="caption" gutterBottom>
+							Show password
+						</Typography>
+					</Box>
+					<Button
+						type="submit"
+						variant="contained"
+						sx={{ width: "65%", marginTop: "5%", bgcolor: "#00293c" }}
+					>
+						SIGN IN
 					</Button>
-				</DialogActions>
-			</Dialog>
-		</Box>
+					<StyledLink
+						variant="body2"
+						mt={7}
+						pb={3}
+						onClick={() => history.push("/around-the-world/signup")}
+					>
+						Don't have an account? Sign Up
+					</StyledLink>
+				</Paper>
+				<Dialog
+					open={openDialog}
+					onClose={handleClose}
+					aria-labelledby="alert-dialog-title"
+					aria-describedby="alert-dialog-description"
+				>
+					<DialogTitle
+						id="alert-dialog-title"
+						align="center"
+						color="error.main"
+					>
+						{"Some thing went wrong !"}
+					</DialogTitle>
+					<DialogContent>
+						<DialogContentText id="alert-dialog-description" color="text.main">
+							Please check your username and password and try again.
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<Button variant="contained" onClick={handleClose} autoFocus>
+							Close
+						</Button>
+					</DialogActions>
+				</Dialog>
+			</Box>
+		</div>
 	);
 }
 

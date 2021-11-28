@@ -14,11 +14,37 @@ import PostCarousel from "../components/PostCarousel";
 import CommentsSection from "../components/CommentsSection";
 
 function Post({ location }) {
-	const { setLoading, user } = useContext(UserContext);
+	const { setLoading, user, jwtToken } = useContext(UserContext);
 	const [post, setPost] = useState(location.data);
-	const [ratingValue, setRatingValue] = useState();
+	const [ratingValue, setRatingValue] = useState(0);
+
+	const submitRating = () => {
+			setLoading(true);
+			const rating = {
+				post: post,
+				rating: ratingValue,
+
+			};
+			axios
+				.post("http://192.168.8.102:8080/api/v1/post/rating", rating, {
+					headers: {
+						"Allow-Origin": "*",
+						"Content-type": "application/json",
+						Authorization: jwtToken,
+					},
+				})
+				.then((response) => {
+					console.log(response);
+				})
+				.catch((err) => console.log(err));
+
+			setTimeout(() => {
+				setLoading(false);
+			}, 800);
+	}
 
 	useEffect(() => {
+		setLoading(true);
 		axios
 			.get(
 				`http://192.168.8.102:8080/api/v1/post/id=${location.pathname.slice(6)}`
@@ -27,12 +53,10 @@ function Post({ location }) {
 				setPost(response.data);
 			})
 			.catch((err) => err);
-		setLoading(false);
-
-		return () => {
-			setLoading(true);
-		};
-	}, []); 
+		setTimeout(() => {
+			setLoading(false);
+		}, 800);
+	}, []);
 
 	if (post) {
 		return (
@@ -111,7 +135,13 @@ function Post({ location }) {
 											}}
 										/>
 
-										<Button color="error" variant="contained" size="small">
+										<Button
+											onClick={submitRating}
+											disabled={ratingValue === 0 || ratingValue === null}
+											color="error"
+											variant="contained"
+											size="small"
+										>
 											Rate This Post
 										</Button>
 									</Box>
@@ -120,10 +150,7 @@ function Post({ location }) {
 						</Stack>
 						<Divider />
 						<Box>
-							<CommentsSection
-								post={post}
-								comments={post.comments}
-							/>
+							<CommentsSection post={post} comments={post.comments} />
 						</Box>
 					</Grid>
 				</Grid>

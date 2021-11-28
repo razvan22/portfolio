@@ -18,57 +18,55 @@ function PostList() {
 
 	const findAllByContinentName = (continent) => {
 		setContinent(continent)
+		setLoading(true);
 		axios
 			.get(
 				`http://192.168.8.102:8080/api/v1/post/continent/name=${continent}`
 			)
 			.then((response) => setPostsObj(response.data))
 			.catch((err) => err);
-			setLoading(false);
-			return () => {
-				setLoading(true);
-			};
+			setTimeout(() => {
+				setLoading(false);
+			}, 800);
 	}
 
 	const getAllWereTitleStartsWith = (title) => {
+		setLoading(true);
 		axios
 			.get(`http://192.168.8.102:8080/api/v1/post/title=${title}`)
 			.then((response) => setPostsObj(response.data))
 			.catch((err) => err);
-		setLoading(false);
-		return () => {
-			setLoading(true);
-		};
+		setTimeout(() => {
+			setLoading(false);
+		}, 800);
 	}
 
 
 	const filterByCountry = (country) => {
+		setLoading(true);
 		axios
-			.get(
-				`http://192.168.8.102:8080/api/v1/post/continent/name=${continent}`
-			)
-		.then((response) =>
+			.get(`http://192.168.8.102:8080/api/v1/post/continent/name=${continent}`)
+			.then((response) =>
 				setPostsObj(
 					response.data.filter((post) => post.location.country === country)
 				)
 			)
-		.catch((err) => err);
-		setLoading(false);
-		return () => {
-			setLoading(true);
-		};
-	}
-
-  useEffect( () => {
-			axios
-				.get("http://192.168.8.102:8080/api/v1/post")
-				.then((response) => setPostsObj(response.data))
-				.catch((err) => err);
+			.catch((err) => err);
+		setTimeout(() => {
 			setLoading(false);
-			return () => {
-				setLoading(true);
-			}
-  },[]);
+		}, 800);
+	};
+
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get("http://192.168.8.102:8080/api/v1/post")
+			.then((response) => setPostsObj(response.data))
+			.catch((err) => err);
+		setTimeout(() => {
+			setLoading(false);
+		}, 800);
+	}, []);
 
 	return (
 		<Box className={classes.listBox}>

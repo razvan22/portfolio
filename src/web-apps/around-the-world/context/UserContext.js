@@ -8,6 +8,7 @@ const UserContextProvider = (props) => {
   const [jwtToken, setJwtToken] = useLocalStorage("Authorization", null);
 	const [user, setUser] = useState(null)
 	const [loading, setLoading] = useState(false);
+	
   
 	return (
 		<UserContext.Provider

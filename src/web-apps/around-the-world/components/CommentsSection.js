@@ -10,7 +10,6 @@ import axios from "axios";
 import Comment from "../components/Comment";
 import { UserContext } from "../context/UserContext";
 import useInputState from "../customHooks/useInputState";
-import createPalette from "@mui/material/styles/createPalette";
 
 function CommentsSection({ comments, post }) {
 	const [commentsList, setCommentsList] = useState(comments);

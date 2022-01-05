@@ -20,7 +20,6 @@ function Post({ location }) {
 	const [updatePost, setUpdatePost] = useState(false);
 
 	const submitRating = () => {
-
 			setLoading(true);
 			const rating = {
 				post: post,

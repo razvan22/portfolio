@@ -36,19 +36,22 @@ function CommentsSection({ comments, post }) {
 		};
 
 				axios
-					.post("http://localhost:8080/api/v1/post/comment", comment, {
-						headers: {
-							"Allow-Origin": "*",
-							"Content-type": "application/json",
-							Authorization: jwtToken,
-						},
-					})
+					.post(
+						`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/comment`,
+						comment,
+						{
+							headers: {
+								"Allow-Origin": "*",
+								"Content-type": "application/json",
+								Authorization: jwtToken,
+							},
+						}
+					)
 					.then((res) => {
 						clearCommentValue();
 						setCommentsList(res.data.reverse());
 					})
-					.catch((err) => {
-					});
+					.catch((err) => {});
 	};
 
 	return (

@@ -9,6 +9,7 @@ import Post from "./pages/Post";
 import FetchUser from "./customHooks/fetchUser";
 import {UserContext} from "./context/UserContext";
 
+
 function AppRouter() {
 	const { jwtToken, user, setUser, loading } = useContext(UserContext);
   useEffect(() => {
@@ -34,12 +35,20 @@ function AppRouter() {
 						path="/around-the-world/signup"
 						component={SignUpUser}
 					></Route>
-					<Route exact path="/post/:id" component={Post}></Route>
+					<Route
+						exact
+						path="/around-the-world/post/:id"
+						component={Post}
+					></Route>
 				</>
 			) : (
 				<>
 					<Route exact path="/around-the-world" component={HomePage}></Route>
-					<Route exact path="/post/:id" component={Post}></Route>
+					<Route
+						exact
+						path="/around-the-world/post/:id"
+						component={Post}
+					></Route>
 					<Route
 						exact
 						path="/around-the-world/newpost"

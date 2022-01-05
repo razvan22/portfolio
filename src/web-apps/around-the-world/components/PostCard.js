@@ -58,7 +58,7 @@ function PostCard(props) {
 				<Link
 					className="post-link"
 					to={{
-						pathname: `/post/${postObject.id}`,
+						pathname: `/around-the-world/post/${postObject.id}`,
 						data: postObject,
 					}}
 				>

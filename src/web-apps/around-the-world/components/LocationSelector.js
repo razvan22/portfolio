@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -63,6 +63,7 @@ function LocationSelector(props) {
 			});
 	};
 
+
 	return (
 		<Box>
 			<StyledFormControl variant="standard" margin="normal">
@@ -80,7 +81,7 @@ function LocationSelector(props) {
 							sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
 							{...props}
 						>
-							{option.label}
+							{option.name}
 						</Box>
 					)}
 					renderInput={(params) => (

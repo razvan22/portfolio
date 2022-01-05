@@ -11,10 +11,11 @@ import { StyledFormControl, Root } from "../styles/signUpStyles";
 import ToggleBooleanState from "../customHooks/ToggleBooleanState";
 import AlertDialog from "../components/AlertDialog";
 import useInput from "../customHooks/useInputState";
-import Navbar from "../components/Navbar";
 import {UserContext} from '../context/UserContext';
+import { useHistory } from "react-router-dom";
 
 function SignUpUser() {
+	const history = useHistory();
 	const {setLoading} = useContext(UserContext);
 	const [firstName, handleFirstNameChange, resetFirstName] = useInput("");
 	const [lastName, handleLastNameChange, resetLastName] = useInput("");
@@ -64,12 +65,16 @@ function SignUpUser() {
 		}
 		if (passwordValue === confirmPasswordValue) {
 			axios
-				.post("http://localhost:8080/api/v1/user/new", user, {
-					headers: {
-						"Allow-Origin": "*",
-						"Content-type": "application/json",
-					},
-				})
+				.post(
+					`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/user/new`,
+					user,
+					{
+						headers: {
+							"Allow-Origin": "*",
+							"Content-type": "application/json",
+						},
+					}
+				)
 				.then((res) => {
 					clearForm();
 					setMessageType("success");
@@ -88,7 +93,6 @@ function SignUpUser() {
 
 	return (
 		<Root>
-			<Navbar search={false} />
 			<AlertDialog
 				open={alertDialogOpen}
 				handleClose={toggleAlertDialogOpen}

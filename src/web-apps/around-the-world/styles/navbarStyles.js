@@ -4,8 +4,8 @@ import InputBase from "@mui/material/InputBase";
 
 const navbarStyles = makeStyles((theme) => ({
 	navbar: {
-		backgroundColor: "#455a64",
 		position: "relative",
+		backgroundColor: "#464646",
 	},
 }));
 

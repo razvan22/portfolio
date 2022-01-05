@@ -9,11 +9,11 @@ function PostCarousel(props) {
   return (
 		<Carousel keyboard={true} className="d-block w-100 ">
 			{props.imgList.map((img) => (
-				<Carousel.Item>
+				<Carousel.Item key={img.id}>
 					<img
 						style={{ height: "80vh" }}
 						className="d-block w-100"
-						src={`http://192.168.8.102:8080${img.url}`}
+						src={`${process.env.REACT_APP_BACKEND_SERVER_IP}${img.url}`}
 						alt="First slide"
 					/>
 				</Carousel.Item>

@@ -13,17 +13,17 @@ function UserMenu() {
 
 	return (
 		<div>
-			<MenuItem onClick={() => history.push("/around-the-world/signup")}>
-				<ListItemIcon>
-					<PersonAdd fontSize="small" />
-				</ListItemIcon>
-				Sign Up
-			</MenuItem>
 			<MenuItem onClick={() => history.push("/around-the-world/login")}>
 				<ListItemIcon>
 					<LoginIcon fontSize="small" />
 				</ListItemIcon>
 				Login
+			</MenuItem>
+			<MenuItem onClick={() => history.push("/around-the-world/signup")}>
+				<ListItemIcon>
+					<PersonAdd fontSize="small" />
+				</ListItemIcon>
+				Sign Up
 			</MenuItem>
 		</div>
 	);

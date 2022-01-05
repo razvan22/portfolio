@@ -33,13 +33,13 @@ function HomePage() {
 				/>
 				<Box sx={{ height: "20%" }}>
 					<StyledTypography variant="h4">
-						Hi there! My name is Razvan-Petru
+						Hi there! I'm Razvan-Petru
 					</StyledTypography>
 					<Typography variant="h6"  component="h6">
 						<Typical
 							loop={2}
 							steps={[
-								"I'm a full stack junior developer & cyber security enthusiast 🙂 ",
+								"A full stack junior developer & cyber security enthusiast 🙂 ",
 								900,
 							]}
 						/>

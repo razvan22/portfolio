@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
 import { projectItemStyles } from "../styles/projectItemsStyles";
-import img from "../assets/images/reactColors.png";
 
 function ProjectItem(props) {
 	const classes = projectItemStyles();

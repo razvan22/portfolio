@@ -13,17 +13,28 @@ import { UserContext } from "../context/UserContext";
 function PostList() {
 	const classes = listStyles();
   const [postsObj, setPostsObj] = useState([]);
-	const [continent, setContinent] = useState('')
+	const [continent, setContinent] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const { setLoading } = useContext(UserContext);
+
+	const setResultMessage= () => {
+	
+		if(postsObj.length >= 0){
+			setErrorMessage("Nothing related !");
+		}
+	}
 
 	const findAllByContinentName = (continent) => {
 		setContinent(continent)
 		setLoading(true);
 		axios
 			.get(
-				`http://192.168.8.102:8080/api/v1/post/continent/name=${continent}`
+				`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/continent/name=${continent}`
 			)
-			.then((response) => setPostsObj(response.data))
+			.then((response) => {
+				setPostsObj(response.data)
+				setResultMessage();
+			})
 			.catch((err) => err);
 			setTimeout(() => {
 				setLoading(false);
@@ -33,8 +44,11 @@ function PostList() {
 	const getAllWereTitleStartsWith = (title) => {
 		setLoading(true);
 		axios
-			.get(`http://192.168.8.102:8080/api/v1/post/title=${title}`)
-			.then((response) => setPostsObj(response.data))
+			.get(`${process.env.REACT_APP_SERVER_IP}/api/v1/post/title=${title}`)
+			.then((response) => {
+				setPostsObj(response.data);
+				setResultMessage();
+			})
 			.catch((err) => err);
 		setTimeout(() => {
 			setLoading(false);
@@ -45,12 +59,13 @@ function PostList() {
 	const filterByCountry = (country) => {
 		setLoading(true);
 		axios
-			.get(`http://192.168.8.102:8080/api/v1/post/continent/name=${continent}`)
-			.then((response) =>
+			.get(`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/continent/name=${continent}`)
+			.then((response) => {
 				setPostsObj(
 					response.data.filter((post) => post.location.country === country)
-				)
-			)
+				);
+				setResultMessage();
+			})
 			.catch((err) => err);
 		setTimeout(() => {
 			setLoading(false);
@@ -60,9 +75,16 @@ function PostList() {
 	useEffect(() => {
 		setLoading(true);
 		axios
-			.get("http://192.168.8.102:8080/api/v1/post")
-			.then((response) => setPostsObj(response.data))
-			.catch((err) => err);
+			.get(`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post`)
+			.then((response) => {
+				setPostsObj(response.data)
+				setResultMessage();
+			})
+			.catch((err) => {
+				if(err.message.toLowerCase() === "network error" ){
+					setErrorMessage("Server seems to be down.");
+				}
+			});
 		setTimeout(() => {
 			setLoading(false);
 		}, 800);
@@ -97,7 +119,7 @@ function PostList() {
 			) : (
 				<Box sx={{ width: 300, height: 300, m: 4 }}>
 					<Alert severity="warning" icon={<MoodBadIcon />}>
-						Nothing related !
+						{errorMessage}
 					</Alert>
 				</Box>
 			)}

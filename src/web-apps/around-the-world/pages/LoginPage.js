@@ -18,7 +18,6 @@ import { UserContext } from "../context/UserContext";
 import useInput from "../customHooks/useInputState";
 import FetchUser from "../customHooks/fetchUser";
 import {StyledLink, loginStyles} from "../styles/loginStyles";
-import Navbar from "../components/Navbar";
 
 function LoginPage({history}) {
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");
@@ -44,14 +43,13 @@ function LoginPage({history}) {
 		};
 
 		axios
-			.post("http://192.168.8.102:8080/login", user, {
+			.post(`${process.env.REACT_APP_BACKEND_SERVER_IP}/login`, user, {
 				headers: {
 					"Allow-Origin": "*",
 					"Content-type": "application/json",
 				},
 			})
 			.then((res) => {
-				console.log("REQUEST")
 				if (res.status === 200) {
 					setJwtToken(res.headers.authorization);
 					fetchUserInfo();
@@ -62,7 +60,6 @@ function LoginPage({history}) {
 
 	const fetchUserInfo = async () => {
 		let user = await FetchUser(jwtToken);
-		console.log('USER :', user);
 		setUser(user);
 		resetEmail();
 		resetPassword();
@@ -73,15 +70,11 @@ function LoginPage({history}) {
 
 	return (
 		<div>
-				<Navbar search={false} />
 			<Box
 				sx={{
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "center",
-					width: "100vw",
-					height: "100vh",
-					backgroundColor: "#0f1313",
 				}}
 			>
 				<Paper component="form" onSubmit={login} className={classes.loginForm}>
@@ -149,7 +142,7 @@ function LoginPage({history}) {
 						align="center"
 						color="error.main"
 					>
-						{"Some thing went wrong !"}
+						{"Login failed !"}
 					</DialogTitle>
 					<DialogContent>
 						<DialogContentText id="alert-dialog-description" color="text.main">

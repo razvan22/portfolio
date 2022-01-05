@@ -5,7 +5,7 @@ const FetchUser = async (token) => {
 
 	if (token != null) {
 	  await axios
-			.get("http://localhost:8080/api/v1/user/", {
+			.get(`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/user/`, {
 				headers: {
 					Authorization: token,
 				},

@@ -9,7 +9,6 @@ import Divider from "@mui/material/Divider";
 import axios from "axios";
 
 import { UserContext } from "../context/UserContext";
-import Navbar from "../components/Navbar";
 import PostCarousel from "../components/PostCarousel";
 import CommentsSection from "../components/CommentsSection";
 
@@ -17,16 +16,18 @@ function Post({ location }) {
 	const { setLoading, user, jwtToken } = useContext(UserContext);
 	const [post, setPost] = useState(location.data);
 	const [ratingValue, setRatingValue] = useState(0);
+	const [didRatePost, setDidRatePost] = useState(false);
+	const [updatePost, setUpdatePost] = useState(false);
 
 	const submitRating = () => {
+
 			setLoading(true);
 			const rating = {
 				post: post,
 				rating: ratingValue,
-
 			};
 			axios
-				.post("http://192.168.8.102:8080/api/v1/post/rating", rating, {
+				.post(`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/rating`, rating, {
 					headers: {
 						"Allow-Origin": "*",
 						"Content-type": "application/json",
@@ -34,34 +35,44 @@ function Post({ location }) {
 					},
 				})
 				.then((response) => {
-					console.log(response);
+					if (response.status === 201) {
+						setUpdatePost(!updatePost);
+					}
 				})
-				.catch((err) => console.log(err));
+				.catch((err) => err);
 
-			setTimeout(() => {
+				setTimeout(() => {
 				setLoading(false);
 			}, 800);
+	}
+
+	const checkIfUserRatedPost = (post) => {
+		post.ratings.map(rating => {
+			if (user.firstName == rating.author.firstName){
+				setDidRatePost(true);
+			}
+		});
 	}
 
 	useEffect(() => {
 		setLoading(true);
 		axios
 			.get(
-				`http://192.168.8.102:8080/api/v1/post/id=${location.pathname.slice(6)}`
+				`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/id=${location.pathname.slice(6)}`
 			)
 			.then((response) => {
 				setPost(response.data);
+				checkIfUserRatedPost(response.data);
 			})
 			.catch((err) => err);
 		setTimeout(() => {
 			setLoading(false);
 		}, 800);
-	}, []);
+	}, [updatePost]);
 
 	if (post) {
 		return (
 			<div>
-				<Navbar />
 				<Grid
 					container
 					justifyContent="center"
@@ -124,28 +135,35 @@ function Post({ location }) {
 									value={post.rating}
 									readOnly
 								/>
-								{user !== null && (
-									<Box mt={2}>
-										<Rating
-											sx={{ display: "block" }}
-											name="simple-controlled"
-											value={ratingValue}
-											onChange={(event, newValue) => {
-												setRatingValue(newValue);
-											}}
-										/>
+								{user !== null &&
+									(didRatePost ? (
+										<Typography variant="overline" display="block" textAlign="center" gutterBottom>
+											Already Rated
+										</Typography>
+									) : (
+										<div>
+											<Box mt={2}>
+												<Rating
+													sx={{ display: "block" }}
+													name="simple-controlled"
+													value={ratingValue}
+													onChange={(event, newValue) => {
+														setRatingValue(newValue);
+													}}
+												/>
 
-										<Button
-											onClick={submitRating}
-											disabled={ratingValue === 0 || ratingValue === null}
-											color="error"
-											variant="contained"
-											size="small"
-										>
-											Rate This Post
-										</Button>
-									</Box>
-								)}
+												<Button
+													onClick={submitRating}
+													disabled={ratingValue === 0 || ratingValue === null}
+													color="error"
+													variant="contained"
+													size="small"
+												>
+													Rate This Post
+												</Button>
+											</Box>
+										</div>
+									))}
 							</Box>
 						</Stack>
 						<Divider />

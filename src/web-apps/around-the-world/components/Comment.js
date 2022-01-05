@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 
 
 function Comment({ comment }) {
-
+	
 	return (
 		<Stack
 			sx={{
@@ -21,7 +21,8 @@ function Comment({ comment }) {
 			}}
 		>
 			<Box sx={{ display: "flex", textAlign: "center", alignItems: "center" }}>
-				<Avatar sx={{ mr: 1, backgroundColor: "#4d4848" }}>RN</Avatar>
+				<Avatar sx={{ mr: 1, backgroundColor: "#4d4848" }}>
+				</Avatar>
 				<Typography color={blueGrey[900]} variant="h6" component="h6">
 					{comment.authorName}
 				</Typography>

@@ -7,9 +7,9 @@ import Toolbar from "@mui/material/Toolbar";
 import AddIcon from "@mui/icons-material/Add";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import HomeIcon from "@mui/icons-material/Home";
 
 import { useHistory } from "react-router-dom";
-
 import { UserContext } from "../context/UserContext";
 import {
 	navbarStyles,
@@ -28,13 +28,6 @@ function Navbar(props) {
 	const classes = navbarStyles();
 	const { jwtToken, user, setUser, loading} = useContext(UserContext);
 
-	useEffect(() => {
-		async function fetchData() {
-			let user = await FetchUser(jwtToken);
-			setUser(user);
-		}
-		fetchData();
-	}, [jwtToken, setUser]);
 
 	return (
 		<Box p={0} m={0}>
@@ -61,6 +54,13 @@ function Navbar(props) {
 				) : (
 					""
 				)}
+				<IconButton
+					size="large"
+					sx={{ color: "#ffff" }}
+					onClick={() => history.push("/around-the-world")}
+				>
+					<HomeIcon fontSize="inherit" />
+				</IconButton>
 				{user == null ? (
 					""
 				) : (
@@ -81,6 +81,7 @@ function Navbar(props) {
 				)}
 				<NavbarMenu />
 			</Box>
+
 			<Backdrop
 				sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
 				open={loading}

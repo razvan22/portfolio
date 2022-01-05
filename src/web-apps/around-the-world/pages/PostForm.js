@@ -6,7 +6,6 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 
-import Navbar from "../components/Navbar";
 import {
 	StyledStack,
 	InfoPanel,
@@ -47,13 +46,17 @@ function PostForm({ history }) {
 		form_data.append('post', JSON.stringify(post))
 
 		axios
-			.post("http://192.168.8.102:8080/api/v1/post/new", form_data, {
-				headers: {
-					"Allow-Origin": "*",
-					"content-type": "multipart/form-data",
-					Authorization: jwtToken,
-				},
-			})
+			.post(
+				`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/new`,
+				form_data,
+				{
+					headers: {
+						"Allow-Origin": "*",
+						"content-type": "multipart/form-data",
+						Authorization: jwtToken,
+					},
+				}
+			)
 			.then((res) => {
 				if (res.status === 201) {
 					setTimeout(() => {
@@ -105,7 +108,6 @@ function PostForm({ history }) {
 
 	return (
 		<Root>
-			<Navbar search={false} />
 			<StyledStack direction="row">
 				<InfoPanel>
 					<Subtitle>Share Your Experience With The World 😉</Subtitle>

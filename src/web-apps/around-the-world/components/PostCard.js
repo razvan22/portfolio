@@ -37,7 +37,7 @@ function PostCard(props) {
 				N
 			</Avatar>
 			<img
-				src={`http://192.168.8.102:8080${imageList[0].url}`}
+				src={`${process.env.REACT_APP_BACKEND_SERVER_IP}${imageList[0].url}`}
 				alt=""
 				className={classes.img}
 			/>
@@ -51,7 +51,7 @@ function PostCard(props) {
 					<Chip
 						sx={{ backgroundColor: "white", right: "1rem" }}
 						icon={<PersonIcon fontSize="small" />}
-						label={`${author.firstName} - ${postDate.replaceAll('-', '/')}`}
+						label={`${author.firstName} - ${postDate.replaceAll("-", "/")}`}
 					/>
 				</Stack>
 

@@ -44,10 +44,10 @@ function CommentsSection({ comments, post }) {
 						},
 					})
 					.then((res) => {
+						clearCommentValue();
 						setCommentsList(res.data.reverse());
 					})
 					.catch((err) => {
-						console.log(err);
 					});
 	};
 

@@ -7,14 +7,17 @@ import FaceRoundedIcon from "@mui/icons-material/FaceRounded";
 
 
 import { UserContext } from "../context/UserContext";
+import { useHistory } from "react-router-dom";
 
 
 function LoggedUserMenu() {
 	const { user, setUser, setJwtToken } = useContext(UserContext);
+	const history = useHistory();
 
   const logout = () => {
     setJwtToken(null);
     setUser(null);
+		history.push("/around-the-world");
   };
 
 

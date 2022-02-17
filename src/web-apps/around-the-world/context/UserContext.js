@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import useLocalStorage from "../customHooks/jwtReducer";
-import ToggleBooleanState from "../customHooks/ToggleBooleanState";
 
 export const UserContext = createContext();
 

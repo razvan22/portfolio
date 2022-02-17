@@ -2,6 +2,17 @@ import { makeStyles } from "@material-ui/core/styles";
 
 
 const projectItemStyles = makeStyles((theme) => ({
+	hrfLink: {
+		fontSize: "15px",
+		fontWeight: "bold",
+		color: "white",
+		textDecoration: "none",
+		"&:hover": {
+			cursor: "pointer",
+			borderColor: "white",
+			color: "#e1f5fe",
+		},
+	},
 	box: {
 		display: "flex",
 		position: "relative",
@@ -27,7 +38,6 @@ const projectItemStyles = makeStyles((theme) => ({
 		transition: "opacity 0.6s ease",
 		"&:hover": {
 			opacity: 0.7,
-			cursor: "pointer",
 		},
 	},
 	projectName: {
@@ -62,6 +72,7 @@ const projectItemStyles = makeStyles((theme) => ({
 		},
 	},
 	link: {
+		textDecoration: "none",
 		position: "absolute",
 		fontSize: "15px",
 		fontWeight: "bold",

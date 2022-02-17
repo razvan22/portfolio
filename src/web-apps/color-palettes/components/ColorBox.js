@@ -56,7 +56,7 @@ class ColorBox extends Component {
 					</div>
 					{showingFullPalette && (
 						<Link
-							to={`/palette/${paletteId}/${id}`}
+							to={`/color-palettes/palette/${paletteId}/${id}`}
 							onClick={(e) => e.stopPropagation()}
 						>
 							<span className={classes.seeMore}>MORE</span>

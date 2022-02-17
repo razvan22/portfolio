@@ -46,7 +46,7 @@ function ColorPalettes() {
 						<Switch location={location}>
 							<Route
 								exact
-								path="/palette/new"
+								path="/color-palettes/palette/new"
 								render={(routeProps) => (
 									<Page>
 										<NewPaletteForm
@@ -72,7 +72,7 @@ function ColorPalettes() {
 							/>
 							<Route
 								exact
-								path="/palette/:id"
+								path="/color-palettes/palette/:id"
 								render={(routerProps) => (
 									<div className="page">
 										<Palette
@@ -85,7 +85,7 @@ function ColorPalettes() {
 							/>
 							<Route
 								exact
-								path="/palette/:paletteId/:colorId"
+								path="/color-palettes/palette/:paletteId/:colorId"
 								render={(routerProps) => (
 									<Page>
 										<SingleColorPalette

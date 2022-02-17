@@ -8,8 +8,8 @@ import Navbar from './components/Navbar';
 function AroundTheWorldApp() {
 	return (
 		<UserContextProvider>
-			<Navbar/>
-			<AppRouter />
+			<Navbar />
+			<AppRouter/>
 		</UserContextProvider>
 	);
 }

@@ -11,7 +11,7 @@ function ProjectItem(props) {
 	const { project } = props;
 	
 	return (
-		<Grid item xs={12}  md={9} lg={6} m={2}>
+		<Grid item xs={12} md={9} lg={6} m={2}>
 			<Box className={classes.box}>
 				<img src={project.imgSrc} alt={project.name} className={classes.img} />
 				<div className={classes.imgCover}></div>
@@ -29,9 +29,17 @@ function ProjectItem(props) {
 				<h6 className={classes.projectDescription}>
 					{project.shortDescription}
 				</h6>
-				<Link to={project.path}>
-					<p className={classes.link}>Live Demo</p>
-				</Link>
+				{project.path === "nordana" ? (
+					<p className={classes.link}>
+						<a className={classes.hrfLink} href="nord.html">
+							Live Demo
+						</a>
+					</p>
+				) : (
+					<Link to={project.path}>
+						<p className={classes.link}>Live Demo</p>
+					</Link>
+				)}
 			</Box>
 		</Grid>
 	);

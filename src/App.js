@@ -18,10 +18,12 @@ function App() {
 				<Route exact path="/" component={HomePage}></Route>
 				<Route exact path="/about" component={AboutMe}></Route>
 				<Route exact path="/games/lights-out" component={LightsOut}></Route>
-				<Route path="/around-the-world" component={AroundTheWorldApp}></Route>
-				<Route render={() => <h1>404: page not found</h1>} />
+				<Route path="/color-palettes" component={ColorPalettes}></Route>
+				<Route
+					path="/around-the-world"
+					component={AroundTheWorldApp}
+				></Route>
 			</Switch>
-			<ColorPalettes />
 		</ProjectsMetadataProvider>
 	);
 }

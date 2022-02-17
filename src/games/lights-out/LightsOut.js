@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
 import Board from "./components/Board";
 import "./css/LightsOut.css";
 
@@ -27,6 +26,10 @@ class LightsOut extends Component {
 		this.setState({ gameLevel: level, startGame: true });
 	}
 
+	stopGame() {
+		
+	}
+
 	displayGameMenu() {
 		return this.props.gameLevel.map((gameLevel) => (
 			<button
@@ -43,11 +46,6 @@ class LightsOut extends Component {
 	render() {
 		return (
 			<div className="main">
-				<div className="navbar">
-					<Link to="/">
-						<button className="nav-btn">Home</button>
-					</Link>
-				</div>
 				<section className="LightsOut">
 					{this.state.startGame ? (
 						<Board boardSize={this.state.gameLevel} />

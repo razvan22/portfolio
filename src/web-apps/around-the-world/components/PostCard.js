@@ -15,8 +15,7 @@ import styles from "../styles/postCardStyles";
 function PostCard(props) {
 	const classes = styles();
 	const { postObject } = props;
-	const { title, imageList, author, location, description, postDate, comments } =
-		postObject;
+	const { title, imageList, author, location, description, postDate, comments, rating } = postObject;
 
 	return (
 		<Box
@@ -34,7 +33,7 @@ function PostCard(props) {
 				className={classes.ratingAvatar}
 				sx={{ bgcolor: deepOrange[500] }}
 			>
-				N
+				{ rating > 0 ? rating : 'N'}
 			</Avatar>
 			<img
 				src={`${process.env.REACT_APP_BACKEND_SERVER_IP}${imageList[0].url}`}

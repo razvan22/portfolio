@@ -1,10 +1,10 @@
 import React from 'react'
 import Carousel from "react-bootstrap/Carousel";
-import{Container, Row, Col} from "react-bootstrap";
+
 
 
 function PostCarousel(props) {
-  const {imgList} = props;
+ 
 
   return (
 		<Carousel keyboard={true} className="d-block w-100 ">

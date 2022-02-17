@@ -35,7 +35,7 @@ class PaletteList extends Component {
 	};
 
 	goToPalette(id) {
-		this.props.history.push(`/palette/${id}`);
+		this.props.history.push(`color-palettes/palette/${id}`);
 	}
 
 	deletePaletteById = () => {
@@ -52,7 +52,7 @@ class PaletteList extends Component {
 				<div className={classes.container}>
 					<nav className={classes.nav}>
 						<h1 className={classes.title}>React Colors</h1>
-						<Link to="/palette/new">Create New Palette</Link>
+						<Link to="/color-palettes/palette/new">Create New Palette</Link>
 					</nav>
 					<TransitionGroup className={classes.palettes}>
 						{palettes.map((palette) => (

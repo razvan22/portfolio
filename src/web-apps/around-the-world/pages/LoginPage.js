@@ -19,7 +19,10 @@ import useInput from "../customHooks/useInputState";
 import FetchUser from "../customHooks/fetchUser";
 import {StyledLink, loginStyles} from "../styles/loginStyles";
 
+
 function LoginPage({history}) {
+
+
 	const [emailValue, handleEmailChange, resetEmail] = useInput("");
 	const [passwordValue, handlePasswordChange, resetPassword] = useInput("");
 	const { jwtToken, setJwtToken, setUser, setLoading } = useContext(UserContext);

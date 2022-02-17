@@ -1,5 +1,5 @@
 import React from "react";
-import { red, grey, blueGrey } from "@mui/material/colors";
+import { grey, blueGrey } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";

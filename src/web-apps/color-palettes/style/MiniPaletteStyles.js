@@ -1,4 +1,6 @@
-const MiniPaletteStyles = {
+import { makeStyles } from "@mui/styles";
+
+const MiniPaletteStyles = makeStyles({
 	root: {
 		border: "1px solid black",
 		backgroundColor: "white",
@@ -40,20 +42,20 @@ const MiniPaletteStyles = {
 		position: "relative",
 		marginBottom: "-0.4vh",
 	},
-	delete: {},
 	deleteIcon: {
 		color: "white",
 		backgroundColor: "#eb3d30",
-		width: "20px",
-		height: "20px",
+		width: "100px",
+		height: "100px",
 		position: "absolute",
 		right: "0px",
 		top: "0px",
 		padding: "10px",
 		zIndex: 10,
 		opacity: 0,
-		transition: "all 0.3s ease-in-out"
+		transition: "all 0.3s ease-in-out !important",
 	},
-};
+});
+
 
 export default MiniPaletteStyles;

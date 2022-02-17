@@ -72,9 +72,7 @@ class Board extends Component {
         return (
 					<section>
 						<div className="menu-bar">
-								<h1 className="menu-item" onClick={()=> this.props.history.push("/")}>Home</h1>
-							<h1 className="menu-item">Difficulty</h1>
-							<h1 className="menu-item">New Game</h1>
+                            <h1 className="menu-item" onClick={()=> this.props.history.push("/")}>Home</h1>
 						</div>
 						<h1 className="title">
 							<span className="neon-orange">Lights</span>

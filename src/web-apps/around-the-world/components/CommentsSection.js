@@ -60,7 +60,7 @@ function CommentsSection({ comments, post }) {
 				<Stack mb={2} direction="row">
 					<Box ml={1}>
 						<Avatar sx={{ width: 50, height: 50, bgcolor: green[500] }}>
-							RN
+							{user.firstName.slice(0,1)+user.lastName.slice(0,1)}
 						</Avatar>
 					</Box>
 					<Box

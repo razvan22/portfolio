@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
 import SignUpUser from "./pages/SignUpUser";
@@ -11,20 +11,21 @@ import {UserContext} from "./context/UserContext";
 
 
 function AppRouter() {
-	const { jwtToken, user, setUser, loading } = useContext(UserContext);
-  useEffect(() => {
-    async function fetchData() {
-      let user = await FetchUser(jwtToken);
-      setUser(user);
-    }
-    fetchData();
-  }, [jwtToken, setUser]);
+	const { jwtToken, user, setUser} = useContext(UserContext);
+	useEffect(() => {
+		async function fetchData() {
+			let user = await FetchUser(jwtToken);
+			setUser(user);
+		}
+		fetchData();
+	}, [jwtToken, setUser]);
 
-  return (
+	return (
 		<Switch>
+
 			{user == null ? (
 				<>
-					<Route exact path="/around-the-world" component={HomePage}></Route>
+					<Route exact path={"/around-the-world"} component={HomePage}></Route>
 					<Route
 						exact
 						path="/around-the-world/login"

@@ -26,10 +26,9 @@ const styles = makeStyles((theme) => ({
 function PostFilter(props) {
 	const classes = styles();
 	const { fetchPostsByContinent, filterByCountry, getAllWereTitleStartsWith } =	props;
-	const [title, setTitle, clearTitle] = useInput('');
+	const [title, setTitle] = useInput('');
 	const [continent, setContinent] = useState(null);
 	const [country, setCountry] = useState("");
-	const [open, setOpen] = useState(false);
 	const [countries, setCountries] = useState([]);
 	const [continentsList, setContinentsList] = useLocalStorage(
 		"continents",

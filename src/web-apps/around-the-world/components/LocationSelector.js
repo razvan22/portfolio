@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -9,7 +9,7 @@ import useInputState from "../customHooks/useInputState";
 function LocationSelector(props) {
 	const { setSelectedLocation, continentsList } = props;
 	const [countries, setCountries] = useState([]);
-	const [address, handelAddressChange, clearAddress] = useInputState("");
+	const [address, handelAddressChange] = useInputState("");
 	const [location, setLocation] = useState({
 		continent: "",
 		country: "",

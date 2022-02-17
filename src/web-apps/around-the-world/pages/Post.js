@@ -57,7 +57,7 @@ function Post({ location }) {
 		setLoading(true);
 		axios
 			.get(
-				`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/id=${location.pathname.slice(6)}`
+				`${process.env.REACT_APP_BACKEND_SERVER_IP}/api/v1/post/id=${location.pathname.slice(23)}`
 			)
 			.then((response) => {
 				setPost(response.data);

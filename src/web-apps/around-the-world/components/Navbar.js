@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect } from "react";
+import React, {  useContext } from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip"; 
@@ -18,7 +18,7 @@ import {
 	StyledInputBase,
 } from "../styles/navbarStyles";
 import NavbarMenu from "./NavbarMenu";
-import FetchUser from '../customHooks/fetchUser';
+
 
 
 function Navbar(props) {
@@ -26,7 +26,7 @@ function Navbar(props) {
 	const history = useHistory();
 
 	const classes = navbarStyles();
-	const { jwtToken, user, setUser, loading} = useContext(UserContext);
+	const { user, loading} = useContext(UserContext);
 
 
 	return (

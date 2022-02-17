@@ -57,7 +57,7 @@ function SignUpUser() {
 			email: emailValue,
 			password: confirmPasswordValue,
 			roles: "USER",
-			isActive: true,
+			isActive: 1,
 		};
 
 		if (passwordValue !== confirmPasswordValue) {
@@ -83,6 +83,7 @@ function SignUpUser() {
 				})
 				.catch((err) => {
 					setMessageType("error");
+					console.log("Err");
 					setMessage(err.response.data.message);
 					toggleAlertDialogOpen();
 				});

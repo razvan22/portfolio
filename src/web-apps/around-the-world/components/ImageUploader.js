@@ -41,12 +41,12 @@ function ImageUploader(props) {
 		};
 		reader.readAsDataURL(file);
 	}
-	useEffect(() => {	
-		if(imgFiles.length === 0) {
+	useEffect(() => {
+		if (imgFiles.length === 0) {
 			document.getElementById("icon-button-file").value = "";
 		}
 		setImages(imgFiles.map((img) => img.file));
-	}, [imgFiles]);
+	}, [imgFiles, setImages]);
 
 	return (
 		<Root>

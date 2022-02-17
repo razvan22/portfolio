@@ -50,10 +50,10 @@ class SingleColorPalette extends Component {
 		return (
 			<div className={classes.Palette}>
 				<Navbar hasSlider={false} handleChange={this.changeColorFormat} />
-				<div className={(classes.colors)}>
+				<div className={classes.colors}>
 					{colorBoxes}
 					<div className={classes.goBack}>
-						<Link to={`/palette/${id}`}>Go Back</Link>
+						<Link to={`/color-palettes/palette/${id}`}>Go Back</Link>
 					</div>
 				</div>
 				<PaletteFooter paletteName={paletteName} emoji={emoji} />
